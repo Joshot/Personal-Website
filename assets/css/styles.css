@@ -297,7 +297,7 @@ img {
   position: absolute;
   left: 0;
   bottom: 0;
-  background-color: var(--first-color);
+  background-color: #BBE3E3;
   height: .25rem;
   border-radius: .5rem;
   z-index: var(--z-back);
@@ -309,52 +309,52 @@ img {
 
 /* HTML */
 .skills__html {
-  width: 95%;
+  width: 100%;
 }
 
 /* CSS */
 .skills__css {
-  width: 80%;
+  width: 100%;
 }
 
 /* js */
 .skills__js {
-  width: 80%;
+  width: 100%;
 }
 
 /* PHP */
 .skills__php {
-  width: 90%;
+  width: 100%;
 }
                         
 /* My SQL  */
 .skills__sql {
-  width: 95%;
+  width: 100%;
 }
 
 /* MS Office */
 .skills__ms {
-  width: 95%;
+  width: 100%;
 }
 
 /* Canva */
 .skills__canva {
-  width: 95%;
+  width: 100%;
 }
 
 /* Figma */
 .skills__figma {
-  width: 85%;
+  width: 100%;
 }
 
 /* Leadership */
 .skills__leadership {
-  width: 90%;
+  width: 100%;
 }
 
 /* Komunikasi */
 .skills__komunikasi {
-  width: 85%;
+  width: 100%;
 }
 
 
