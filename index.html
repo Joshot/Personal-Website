@@ -3,480 +3,1456 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- =====BOX ICONS===== -->
+    <title>Joshua Hotama - Portfolio</title>
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
-    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" />
-    <!-- My CSS -->
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <title>Personal Website - Joshua Hotama</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="website icon" type="png" href="assets/img/logoHtml.png">
     <style>
-        /* Additional CSS for improvements and responsiveness */
+        /* ===== VARIABLES ===== */
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a56d4;
+            --secondary: #0d1b2a;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --white: #ffffff;
+            --gray: #6c757d;
+            --card-bg: #ffffff;
+            --body-bg: #f0f2f5;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --shadow-hover: 0 20px 50px rgba(67,97,238,0.3);
+            --radius: 16px;
+            --header-h: 70px;
+        }
+
+        /* ===== RESET ===== */
+        *, ::before, ::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
-            margin: 0;
-            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: var(--body-bg);
+            color: var(--secondary);
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+        ul { list-style: none; }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--light); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+
+        /* ===== CURSOR ===== */
+        .cursor {
+            width: 20px; height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            position: fixed;
+            top: 0; left: 0;
+            pointer-events: none;
+            z-index: 99999;
+            transition: transform 0.15s ease, opacity 0.3s;
+            mix-blend-mode: difference;
+        }
+        .cursor-follower {
+            width: 40px; height: 40px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            position: fixed;
+            top: 0; left: 0;
+            pointer-events: none;
+            z-index: 99998;
+            transition: transform 0.4s ease, opacity 0.3s;
+            opacity: 0.5;
+        }
+
+        /* ===== LOADER ===== */
+        #loader {
+            position: fixed; inset: 0;
+            background: var(--secondary);
+            z-index: 99999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+        #loader.hide { opacity: 0; visibility: hidden; }
+        .loader-text {
+            color: #fff;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            animation: pulse 1.2s infinite alternate;
+        }
+        .loader-bar {
+            width: 200px; height: 4px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+        .loader-bar-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 10px;
+            animation: loadfill 2s ease forwards;
+        }
+        @keyframes loadfill { from { width: 0; } to { width: 100%; } }
+        @keyframes pulse { from { opacity: 0.5; } to { opacity: 1; } }
+
+        /* ===== HEADER ===== */
+        .l-header {
+            position: fixed; top: 0; left: 0;
+            width: 100%; z-index: 1000;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        .l-header.scrolled {
+            box-shadow: 0 5px 30px rgba(0,0,0,0.15);
+        }
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            height: var(--header-h);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
         }
         .nav__logo {
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--secondary);
+            letter-spacing: -0.5px;
         }
-        .home__title {
-            font-size: 2.5rem;
-        }
-        .button {
-            background-color: #000000;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            margin-right: 15px;
-            display: inline-block;
-            font-size: 0.8rem;
-        }
-        .button:hover {
-            background-color: #333333;
-        }
-        .skills__container {
+        .nav__logo span { color: var(--primary); }
+        .nav__list {
             display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: flex-start;
-            padding: 10px 0;
-            max-width: 100%;
-        }
-        .skills__data {
-            flex: 0 0 auto;
-            margin-bottom: 20px;
-            text-align: center;
-            background-color: #ffffff;
-            padding: 15px; /* Added padding inside each skill box */
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-            min-width: 100px;
-            white-space: nowrap;
-        }
-        .skills__data:hover {
-            transform: translateY(-5px);
-        }
-        .skills__names {
-            display: flex;
-            flex-direction: column;
+            gap: 2rem;
             align-items: center;
         }
-        .skills__icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
+        .nav__link {
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--secondary);
+            position: relative;
+            padding: 4px 0;
+            transition: color 0.3s;
         }
-        .skills__name {
-            font-weight: bold;
+        .nav__link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 0;
+            width: 0; height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
         }
-        .skills__percentage {
+        .nav__link:hover, .nav__link.active { color: var(--primary); }
+        .nav__link:hover::after, .nav__link.active::after { width: 100%; }
+        .nav__cta {
+            background: var(--primary);
+            color: #fff !important;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .nav__cta:hover { background: var(--accent); transform: translateY(-2px); }
+        .nav__cta::after { display: none !important; }
+        .nav__toggle {
             display: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+            color: var(--secondary);
         }
-        .work__container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+
+        /* ===== PARTICLES ===== */
+        #particles-js {
+            position: absolute; inset: 0; z-index: 0;
         }
-        .work__img img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-        .work__img img:hover {
-            transform: scale(1.05);
-        }
-        .contact__container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .contact__input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .contact__button {
-            background-color: #000000;
-            color: white;
-        }
-        .footer-distributed {
-            background-color: #292c2f;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+
+        /* ===== HOME ===== */
         .home {
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            padding: 20px;
-            padding-top: 7rem; /* Added padding-top to prevent overlap with navbar */
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0d1b2a 0%, #1a2d4a 50%, #0d1b2a 100%);
+            padding-top: var(--header-h);
         }
-        .home__data {
+        .home__container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 4rem;
+            position: relative; z-index: 1;
+        }
+        .home__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(67,97,238,0.2);
+            border: 1px solid rgba(67,97,238,0.4);
+            color: #a5b4fc;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            animation: fadeInDown 0.6s ease;
+        }
+        .home__badge i { color: var(--primary); }
+        .home__title {
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease;
+        }
+        .home__title-color { color: var(--primary); }
+        .home__typewriter {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            color: #a5b4fc;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            min-height: 2em;
+            animation: fadeInUp 1s ease;
+        }
+        .typewriter-text { border-right: 2px solid var(--primary); padding-right: 4px; }
+        .home__desc {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 1.1s ease;
+        }
+        .home__buttons {
+            display: flex; gap: 1rem; flex-wrap: wrap;
+            animation: fadeInUp 1.2s ease;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            box-shadow: 0 8px 25px rgba(67,97,238,0.4);
+        }
+        .btn-primary:hover { transform: translateY(-4px); box-shadow: 0 15px 35px rgba(67,97,238,0.5); background: var(--primary-dark); }
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid rgba(255,255,255,0.3);
+            transition: var(--transition);
+        }
+        .btn-outline:hover { border-color: var(--primary); background: rgba(67,97,238,0.1); transform: translateY(-4px); }
+        .home__stats {
+            display: flex; gap: 2.5rem; margin-top: 3rem;
+            animation: fadeInUp 1.3s ease;
+        }
+        .home__stat h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        .home__stat p { font-size: 0.75rem; color: rgba(255,255,255,0.5); }
+        .home__img-side {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInRight 1s ease;
+        }
+        .home__img-wrapper {
+            position: relative;
+            width: 380px; height: 380px;
+        }
+        .home__img-bg {
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation: morphBlob 8s ease-in-out infinite alternate;
+            opacity: 0.8;
+        }
+        @keyframes morphBlob {
+            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+            100% { border-radius: 30% 70% 70% 30% / 70% 30% 30% 70%; }
+        }
+        .home__img-wrapper img {
+            position: absolute;
+            width: 90%; height: 90%;
+            top: 5%; left: 5%;
+            object-fit: cover;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation: morphBlob 8s ease-in-out infinite alternate;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4));
+        }
+        .home__social-float {
+            position: absolute;
+            right: 2rem; top: 50%;
+            transform: translateY(-50%);
+            display: flex; flex-direction: column; gap: 12px;
+            z-index: 2;
+        }
+        .home__social-float a {
+            width: 40px; height: 40px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-size: 1rem;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+        .home__social-float a:hover { background: var(--primary); border-color: var(--primary); transform: scale(1.15); }
+
+        /* ===== SCROLL INDICATOR ===== */
+        .scroll-indicator {
+            position: absolute; bottom: 2rem; left: 50%;
+            transform: translateX(-50%);
+            display: flex; flex-direction: column;
+            align-items: center; gap: 8px;
+            color: rgba(255,255,255,0.4);
+            font-size: 0.75rem;
+            animation: bounce 2s infinite;
+            z-index: 1;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-8px); }
+        }
+
+        /* ===== SECTION GENERAL ===== */
+        .section { padding: 6rem 0; }
+        .section__container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .section__header { text-align: center; margin-bottom: 4rem; }
+        .section__badge {
+            display: inline-block;
+            background: rgba(67,97,238,0.1);
+            color: var(--primary);
+            padding: 4px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+        .section__title {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 800;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        .section__line {
+            width: 60px; height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 10px;
+            margin: 0 auto;
+        }
+
+        /* ===== ABOUT ===== */
+        .about { background: #fff; }
+        .about__grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 5rem;
+            align-items: center;
+        }
+        .about__img-wrapper {
+            position: relative;
+        }
+        .about__img-wrapper img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            position: relative; z-index: 1;
+        }
+        .about__img-deco {
+            position: absolute;
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 20px;
+            top: 15px; left: 15px; z-index: 0;
+            opacity: 0.4;
+        }
+        .about__experience-badge {
+            position: absolute;
+            bottom: -20px; right: -20px;
+            background: var(--primary);
+            color: #fff;
+            padding: 16px 20px;
+            border-radius: var(--radius);
             text-align: center;
+            z-index: 2;
+            box-shadow: 0 10px 30px rgba(67,97,238,0.4);
         }
-        .section-title {
-            margin-top: 40px;
+        .about__experience-badge h3 { font-size: 1.8rem; font-weight: 800; }
+        .about__experience-badge p { font-size: 0.7rem; opacity: 0.9; }
+        .about__subtitle {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .about__role {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+        .about__text {
+            color: var(--gray);
+            line-height: 1.9;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+        .about__info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .about__info-item {
+            display: flex; align-items: center; gap: 12px;
+        }
+        .about__info-item i {
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        .about__info-item span { font-size: 0.85rem; color: var(--gray); }
+        .about__info-item strong { color: var(--secondary); font-size: 0.85rem; }
+        .about__buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn-sm {
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+        .btn-sm.primary { background: var(--primary); color: #fff; box-shadow: 0 8px 20px rgba(67,97,238,0.3); }
+        .btn-sm.primary:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(67,97,238,0.4); }
+        .btn-sm.outline { border: 2px solid var(--primary); color: var(--primary); }
+        .btn-sm.outline:hover { background: var(--primary); color: #fff; transform: translateY(-3px); }
+
+        /* ===== SKILLS ===== */
+        .skills { background: var(--body-bg); }
+        .skills__tabs {
+            display: flex; justify-content: center;
+            gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap;
+        }
+        .skills__tab {
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            background: #fff;
+            color: var(--gray);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        .skills__tab.active, .skills__tab:hover {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+        .skills__panel { display: none; }
+        .skills__panel.active { display: block; }
+        .skills__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 1.5rem;
+        }
+        .skill__card {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+        .skill__card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .skill__card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
+        .skill__card:hover::before { opacity: 1; }
+        .skill__card:hover .skill__icon, .skill__card:hover .skill__name { color: #fff !important; }
+        .skill__icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+            position: relative; z-index: 1;
+            transition: color 0.3s;
+        }
+        .skill__name {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative; z-index: 1;
+            transition: color 0.3s;
+        }
+        .skill__level {
+            position: absolute; bottom: 0; left: 0;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 0 0 4px 4px;
+            transition: width 1s ease;
+            z-index: 2;
+        }
+        /* Proficiency bar animation */
+        .skills__progress-section { margin-top: 3rem; }
+        .progress__item { margin-bottom: 1.5rem; }
+        .progress__header {
+            display: flex; justify-content: space-between;
+            margin-bottom: 8px; font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .progress__bar-bg {
+            background: rgba(67,97,238,0.1);
+            border-radius: 10px;
+            height: 8px;
+            overflow: hidden;
+        }
+        .progress__bar-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 10px;
+            width: 0;
+            transition: width 1.5s ease;
+        }
+
+        /* ===== PROJECTS ===== */
+        .work { background: #fff; }
+        .work__filter {
+            display: flex; justify-content: center;
+            gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap;
+        }
+        .work__filter-btn {
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+            border: 2px solid rgba(67,97,238,0.2);
+            color: var(--gray);
+            background: transparent;
+            transition: all 0.3s;
+        }
+        .work__filter-btn.active, .work__filter-btn:hover {
+            background: var(--primary); color: #fff; border-color: var(--primary);
+        }
+        .work__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+            gap: 2rem;
+        }
+        .work__card {
+            background: var(--body-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .work__card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); }
+        .work__card-img {
+            position: relative; overflow: hidden; height: 210px;
+        }
+        .work__card-img img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .work__card:hover .work__card-img img { transform: scale(1.1); }
+        .work__card-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(13,27,42,0.9), transparent);
+            opacity: 0; transition: opacity 0.4s;
+            display: flex; align-items: flex-end; justify-content: center;
+            padding-bottom: 1.5rem; gap: 1rem;
+        }
+        .work__card:hover .work__card-overlay { opacity: 1; }
+        .work__overlay-btn {
+            background: #fff; color: var(--secondary);
+            border-radius: 50px; padding: 8px 18px;
+            font-size: 0.8rem; font-weight: 600;
+            display: flex; align-items: center; gap: 6px;
+            transition: var(--transition);
+        }
+        .work__overlay-btn:hover { background: var(--primary); color: #fff; }
+        .work__card-tag {
+            position: absolute; top: 1rem; left: 1rem;
+            background: var(--primary); color: #fff;
+            padding: 4px 12px; border-radius: 50px;
+            font-size: 0.7rem; font-weight: 600;
+        }
+        .work__card-body { padding: 1.5rem; }
+        .work__card-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .work__card-desc { font-size: 0.85rem; color: var(--gray); margin-bottom: 1rem; line-height: 1.6; }
+        .work__card-stack { display: flex; gap: 8px; flex-wrap: wrap; }
+        .stack-badge {
+            background: rgba(67,97,238,0.1);
+            color: var(--primary);
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        /* ===== CONTACT ===== */
+        .contact { background: var(--body-bg); }
+        .contact__grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: start;
+        }
+        .contact__info-title {
+            font-size: 1.8rem; font-weight: 700; margin-bottom: 1rem;
+        }
+        .contact__info-desc { color: var(--gray); margin-bottom: 2rem; line-height: 1.8; font-size: 0.9rem; }
+        .contact__card {
+            display: flex; align-items: center; gap: 1rem;
+            background: #fff; border-radius: var(--radius);
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            transition: var(--transition);
+        }
+        .contact__card:hover { transform: translateX(6px); box-shadow: var(--shadow); }
+        .contact__card-icon {
+            width: 48px; height: 48px; min-width: 48px;
+            background: rgba(67,97,238,0.1);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary); font-size: 1.2rem;
+        }
+        .contact__card-label { font-size: 0.75rem; color: var(--gray); }
+        .contact__card-value { font-size: 0.9rem; font-weight: 600; }
+        .contact__social { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+        .contact__social-btn {
+            width: 44px; height: 44px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+        .contact__social-btn:hover { background: var(--primary); color: #fff; transform: translateY(-4px); }
+        .contact__form-wrapper {
+            background: #fff;
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+        .form__group { margin-bottom: 1.5rem; position: relative; }
+        .form__label {
+            display: block;
+            font-size: 0.85rem; font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        .form__input, .form__textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid rgba(67,97,238,0.15);
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            color: var(--secondary);
+            background: var(--body-bg);
+            transition: all 0.3s;
+            outline: none;
+        }
+        .form__input:focus, .form__textarea:focus {
+            border-color: var(--primary);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(67,97,238,0.1);
+        }
+        .form__textarea { resize: vertical; min-height: 140px; }
+        .form__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .form__submit {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+        .form__submit:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(67,97,238,0.4); }
+        .form__success {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            color: var(--primary);
+        }
+        .form__success i { font-size: 3rem; margin-bottom: 1rem; }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--secondary);
+            color: rgba(255,255,255,0.6);
+            padding: 4rem 0 2rem;
+        }
+        .footer__container {
+            max-width: 1200px;
+            margin: 0 auto; padding: 0 2rem;
+        }
+        .footer__top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 2rem;
+        }
+        .footer__brand-name {
+            font-size: 1.4rem; font-weight: 800;
+            color: #fff; margin-bottom: 1rem;
+        }
+        .footer__brand-name span { color: var(--primary); }
+        .footer__brand-desc { font-size: 0.85rem; line-height: 1.8; margin-bottom: 1.5rem; }
+        .footer__social { display: flex; gap: 12px; }
+        .footer__social a {
+            width: 38px; height: 38px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            color: rgba(255,255,255,0.6);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        .footer__social a:hover { background: var(--primary); color: #fff; transform: translateY(-3px); }
+        .footer__col-title { font-size: 0.9rem; font-weight: 700; color: #fff; margin-bottom: 1.5rem; }
+        .footer__links { display: flex; flex-direction: column; gap: 0.8rem; }
+        .footer__links a { font-size: 0.85rem; transition: color 0.3s; }
+        .footer__links a:hover { color: var(--primary); }
+        .footer__bottom {
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+        }
+        .footer__copy { font-size: 0.8rem; }
+        .footer__made { font-size: 0.8rem; }
+        .footer__made span { color: #f72585; }
+
+        /* ===== BACK TO TOP ===== */
+        .back-to-top {
+            position: fixed; bottom: 2rem; right: 2rem;
+            width: 48px; height: 48px;
+            background: var(--primary);
+            color: #fff; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 8px 25px rgba(67,97,238,0.4);
+            transition: var(--transition);
+            opacity: 0; visibility: hidden; z-index: 500;
+        }
+        .back-to-top.show { opacity: 1; visibility: visible; }
+        .back-to-top:hover { transform: translateY(-4px); background: var(--accent); }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.7s cubic-bezier(0.17, 0.67, 0.32, 1.15); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .home__container { grid-template-columns: 1fr; text-align: center; }
+            .home__img-side { display: none; }
+            .home__buttons { justify-content: center; }
+            .home__stats { justify-content: center; }
+            .home__social-float { display: none; }
+            .about__grid { grid-template-columns: 1fr; }
+            .about__img-wrapper { max-width: 300px; margin: 0 auto; }
+            .contact__grid { grid-template-columns: 1fr; }
+            .footer__top { grid-template-columns: 1fr; gap: 2rem; }
         }
         @media (max-width: 768px) {
-            .home {
-                padding: 10px;
-                padding-top: 80px; /* Maintain padding-top on mobile */
-            }
-            .skills__container {
-                justify-content: center;
-            }
-            .skills__data {
-                min-width: 90px;
-            }
-            .work__container {
-                grid-template-columns: 1fr;
-            }
+            .nav__list { display: none; flex-direction: column; position: fixed; top: var(--header-h); left: 0; width: 100%; background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); padding: 2rem; gap: 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+            .nav__list.show { display: flex; }
+            .nav__item { padding: 0.8rem 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
+            .nav__toggle { display: block; }
+            .form__grid { grid-template-columns: 1fr; }
+            .about__info-grid { grid-template-columns: 1fr; }
+            .work__grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-<!--===== HEADER =====-->
-<header class="l-header">
-    <nav class="nav bd-grid">
-        <div>
-            <a href="#" class="nav__logo">Joshua Hotama</a>
-        </div>
-        <div class="nav__menu" id="nav-menu">
-            <ul class="nav__list">
-                <li class="nav__item"><a href="#home" class="nav__link active">Home</a></li>
-                <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
-                <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
-                <li class="nav__item"><a href="#work" class="nav__link">Projects</a></li>
-                <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
-            </ul>
-        </div>
-        <div class="nav__toggle" id="nav-toggle">
-            <i class='bx bx-menu'></i>
-        </div>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursorFollower"></div>
+
+<!-- LOADER -->
+<div id="loader">
+    <div class="loader-text">JH</div>
+    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+</div>
+
+<!-- BACK TO TOP -->
+<a href="#home" class="back-to-top" id="backToTop"><i class='bx bx-up-arrow-alt'></i></a>
+
+<!-- HEADER -->
+<header class="l-header" id="header">
+    <nav class="nav">
+        <a href="#" class="nav__logo">Joshua <span>Hotama</span></a>
+        <ul class="nav__list" id="nav-menu">
+            <li class="nav__item"><a href="#home" class="nav__link active">Home</a></li>
+            <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+            <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
+            <li class="nav__item"><a href="#work" class="nav__link">Projects</a></li>
+            <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
+            <li class="nav__item"><a href="assets/cv/CV_JoshuaHotamaNEW.pdf" class="nav__link nav__cta" target="_blank"><i class='bx bx-download'></i> Resume</a></li>
+        </ul>
+        <div class="nav__toggle" id="nav-toggle"><i class='bx bx-menu'></i></div>
     </nav>
 </header>
 
-<main class="l-main">
-    <!--===== HOME =====-->
-    <section class="home bd-grid" id="home">
+<!-- HOME -->
+<section class="home" id="home">
+    <div id="particles-js"></div>
+    <div class="home__container">
         <div class="home__data">
-            <h1 class="home__title">Hi,<br>I'm <span class="home__title-color">Joshua Hotama</span><br>Programmer & Fresh Graduate</h1>
-            <a href="assets/cv/CV_JoshuaHotamaNEW.pdf" class="button">Download CV</a>
-            <a href="assets/portofolio/PORTOFOLIO JOSSS.pdf" class="button">Download Portfolio</a>
+            <div class="home__badge"><i class='bx bxs-circle'></i> Available for Opportunities</div>
+            <h1 class="home__title">Hi, I'm <span class="home__title-color">Joshua<br>Hotama</span></h1>
+            <p class="home__typewriter"><span class="typewriter-text" id="typewriter"></span></p>
+            <p class="home__desc">Fresh Graduate passionate about building beautiful, functional, and user-friendly digital experiences. From frontend to backend — I build it all.</p>
+            <div class="home__buttons">
+                <a href="#work" class="btn-primary"><i class='bx bx-code-alt'></i> View My Work</a>
+                <a href="#contact" class="btn-outline"><i class='bx bx-send'></i> Hire Me</a>
+            </div>
+            <div class="home__stats">
+                <div class="home__stat"><h3>10+</h3><p>Projects<br>Completed</p></div>
+                <div class="home__stat"><h3>5+</h3><p>Tech<br>Stacks</p></div>
+                <div class="home__stat"><h3>2+</h3><p>Years<br>Experience</p></div>
+            </div>
         </div>
-    </section>
-
-    <!-- Sosmed -->
-    <section style="text-align: center">
-        <ul class="wrapper">
-            <a href="https://www.facebook.com/joshua.hotama/" style="color: black;">
-                <li class="icon facebook"><span class="tooltip">Facebook</span><span><i class="bi bi-facebook"></i></span></li>
-            </a>
-            <a href="https://www.linkedin.com/in/joshua-hotama-859823225/" style="color: black;">
-                <li class="icon linkedin"><span class="tooltip">Linkedin</span><span><i class="bi bi-linkedin"></i></span></li>
-            </a>
-            <a href="https://www.instagram.com/joshuahotama/" style="color: black;">
-                <li class="icon instagram"><span class="tooltip">Instagram</span><span><i class="bi bi-instagram"></i></span></li>
-            </a>
-            <a href="https://github.com/Joshot" style="color: black;">
-                <li class="icon github"><span class="tooltip">Github</span><span><i class="bi bi-github"></i></span></li>
-            </a>
-            <a href="#" style="color: black;">
-                <li class="icon youtube"><span class="tooltip">Youtube</span><span><i class="bi bi-youtube"></i></span></li>
-            </a>
-        </ul>
-    </section>
-
-    <!--===== ABOUT =====-->
-    <section class="about section" id="about">
-        <h2 class="section-title">About Me</h2>
-        <div class="about__container bd-grid">
-            <div class="about__img">
+        <div class="home__img-side">
+            <div class="home__img-wrapper">
+                <div class="home__img-bg"></div>
                 <img src="assets/img/Profile.jpg" alt="Joshua Hotama">
             </div>
-            <div>
-                <h2 class="about__subtitle">Joshua Hotama</h2>
-                <p class="about__text">
-                    Hello, I'm Joshua Hotama, a Fresh Graduate. I have experience in both Front End and Back End development, gained through internships, university, and external projects.
-                    <br>
-                    <br> My backend work involves MySQL, PostgreSQL, MongoDB, and database optimization, while my frontend experience includes HTML, CSS, JavaScript, PHP, React, JQuery, Javascript, Tailwind, and Bootstrap.
-
-                    <br>
-                    <br>I also have a strong interest in design and have applied it in various projects, learning tools like Figma from scratch. Currently based in Tangerang, Indonesia, I am highly adaptable and quick to acquire new skills, both technical and soft skills.
-                    <br>
-                    <br>I am learning Japanese with the goal of working in Japan, driven by a long-standing interest in its culture. For me, continuous learning, a positive attitude, and a strong work ethic are essential to staying relevant and excelling in the tech industry.
-                </p>
-            </div>
         </div>
-    </section>
-
-    <!--===== SKILLS =====-->
-    <section class="skills section" style="text-align: center; padding-left: 2rem; padding-right: 2rem;" id="skills">
-        <h2 class="section-title">Skills</h2>
-        <h2 class="skills__subtitle">My Skills</h2>
-        <p class="skills__text" style="margin-left: 20%; margin-right: 20%;">This is a skill that I have mastered for now, for the future my skills will continue to grow.</p>
-        <div class="skills__container bd-grid">
-            <!-- Skill list without bars -->
-            <div class="skills__data">
-                <div class="skills__names">
-                    <i class='bx bxl-html5 skills__icon' style="color: black;"></i>
-                    <span class="skills__name">HTML</span>
-                </div>
-            </div>
-            <div class="skills__data">
-                <div class="skills__names">
-                    <i class='bx bxl-css3 skills__icon' style="color: black;"></i>
-                    <span class="skills__name">CSS</span>
-                </div>
-            </div>
-            <div class="skills__data">
-                <div class="skills__names">
-                    <i class='bx bxl-javascript skills__icon' style="color: black;"></i>
-                    <span class="skills__name">JAVASCRIPT</span>
-                </div>
-            </div>
-            <div class="skills__data">
-                <div class="skills__names">
-                    <img src="assets/img/bxl-php.svg" class="skills__icon" alt="icon php">
-                    <span class="skills__name">PHP</span>
-                </div>
-            </div>
-            <div class="skills__data">
-                <div class="skills__names">
-                    <i class='bx bx-data skills__icon' style="color: black;"></i>
-                    <span class="skills__name">MY SQL</span>
-                </div>
-            </div>
-            <div class="skills__data">
-                <div class="skills__names">
-                    <i class='bx bxl-microsoft skills__icon' style="color: black;"></i>
-                    <span class="skills__name">MICROSOFT OFFICE</span>
-                </div>
-            </div>
-            <div class="skills__data">
-                <div class="skills__names">
-                    <i class='bx bxs-paint skills__icon' style="color: black;"></i>
-                    <span class="skills__name">CANVA</span>
-                </div>
-            </div>
-            <div class="skills__data">
-                <div class="skills__names">
-                    <i class='bx bxl-figma skills__icon' style="color: black;"></i>
-                    <span class="skills__name">FIGMA</span>
-                </div>
-            </div>
-            <div class="skills__data">
-                <div class="skills__names">
-                    <i class='bi bi-people skills__icon' style="color: black;"></i>
-                    <span class="skills__name">LEADERSHIP</span>
-                </div>
-            </div>
-            <div class="skills__data">
-                <div class="skills__names">
-                    <i class='bx bx-user-voice skills__icon' style="color: black;"></i>
-                    <span class="skills__name">COMMUNICATION</span>
-                </div>
-            </div>
-            <div class="skills__data">
-                <div class="skills__names">
-                    <i class='bx bx-notebook skills__icon' style="color: black;"></i>
-                    <span class="skills__name">NOTION</span>
-                </div>
-            </div>
-            <div class="skills__data">
-                <div class="skills__names">
-                    <i class='bx bxl-jquery skills__icon' style="color: black;"></i>
-                    <span class="skills__name">JQUERY</span>
-                </div>
-            </div>
-            <div class="skills__data">
-                <div class="skills__names">
-                    <i class='bx bxl-java skills__icon' style="color: black;"></i>
-                    <span class="skills__name">JAVA</span>
-                </div>
-            </div>
-            <div class="skills__data">
-                <div class="skills__names">
-                    <i class='bx bx-data skills__icon' style="color: black;"></i>
-                    <span class="skills__name">MONGO DB</span>
-                </div>
-            </div>
-            <div class="skills__data">
-                <div class="skills__names">
-                    <i class='bx bxl-react skills__icon' style="color: black;"></i>
-                    <span class="skills__name">MERN STACK</span>
-                </div>
-            </div>
-            <div class="skills__data">
-                <div class="skills__names">
-                    <i class='bx bx-code-alt skills__icon' style="color: black;"></i>
-                    <span class="skills__name">C#</span>
-                </div>
-            </div>
-            <div class="skills__data">
-                <div class="skills__names">
-                    <i class='bx bxl-python skills__icon' style="color: black;"></i>
-                    <span class="skills__name">PYTHON</span>
-                </div>
-            </div>
-            <div class="skills__data">
-                <div class="skills__names">
-                    <i class='bx bxl-android skills__icon' style="color: black;"></i>
-                    <span class="skills__name">KOTLIN</span>
-                </div>
-            </div>
-            <div class="skills__data">
-                <div class="skills__names">
-                    <i class='bx bx-sitemap skills__icon' style="color: black;"></i>
-                    <span class="skills__name">ERP</span>
-                </div>
-            </div>
-            <div class="skills__data">
-                <div class="skills__names">
-                    <i class='bx bx-code-alt skills__icon' style="color: black;"></i>
-                    <span class="skills__name">.NET</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!--===== WORK =====-->
-    <section class="work section" id="work">
-        <h2 class="section-title">Projects</h2>
-        <div class="work__container bd-grid">
-            <a href="https://seven-days-umn-life.vercel.app/" class="work__img">
-                <img src="assets/img/7daysPic.jpg" alt="7 Days UMN Life">
-            </a>
-            <a href="https://rwsebelasmedanglestari.com/" class="work__img">
-                <img src="assets/img/medang_lestari.png" alt="Medang Lestari">
-            </a>
-            <a href="https://beamish-pavlova-da1cee.netlify.app/#" class="work__img">
-                <img src="assets/img/umnLife.jpg" alt="UMN Life">
-            </a>
-            <a href="https://www.figma.com/proto/cFJQz8sOqjci3WdOpCKYk8/Prototype-E-Learning-UAS?page-id=0%3A1&node-id=8%3A6884&viewport=-280%2C-1787%2C0.93&scaling=contain&starting-point-node-id=8%3A6884" class="work__img">
-                <img src="assets/img/prototipe.jpg" alt="E-Learning Prototype">
-            </a>
-            <a href="https://www.figma.com/proto/E21WkDsWCddK9BpbKIJsjG/Project-SOP?node-id=198-15481&t=aaBnjpGVD4xvIqrS-1" class="work__img">
-                <img src="assets/img/SOP.png" alt="SOP Project">
-            </a>
-            <a href="https://www.figma.com/proto/ouL8uMLaWI1bguy3GjBYlc/JPM-FIX?node-id=0-1&t=5Cmpx6kiKqgQVhoP-1" class="work__img">
-                <img src="assets/img/JPM.png" alt="JPM Project">
-            </a>
-            <a href="https://cendanamotor.my.id/" class="work__img">
-                <img src="assets/img/cendanaMotorPic.jpg" alt="Cendana Motor">
-            </a>
-            <a href="#work" class="work__img">
-                <img src="assets/img/OTW.png" alt="OTW Project">
-            </a>
-        </div>
-    </section>
-
-    <!--===== CONTACT =====-->
-    <section class="contact section" id="contact">
-        <h2 class="section-title">Contact</h2>
-        <div class="contact__container bd-grid">
-            <form action="" class="contact__form">
-                <input type="text" placeholder="Name" class="contact__input">
-                <input type="mail" placeholder="Email" class="contact__input">
-                <textarea name="" id="" cols="0" rows="10" class="contact__input" placeholder="Your message here..."></textarea>
-                <input type="button" value="Submit" class="contact__button button">
-            </form>
-        </div>
-    </section>
-</main>
-
-<!--===== FOOTER =====-->
-<footer class="footer-distributed">
-    <div class="footer-right">
-        <a href="https://www.facebook.com/joshua.hotama/"><i class="bi bi-facebook"></i></a>
-        <a href="https://www.linkedin.com/in/joshua-hotama-859823225/"><i class="bi bi-linkedin"></i></a>
-        <a href="https://www.instagram.com/joshuahotama/"><i class="bi bi-instagram"></i></a>
-        <a href="https://github.com/Joshot"><i class="bi bi-github"></i></a>
     </div>
-    <div class="footer-left">
-        <p class="footer-links">
-            <a class="link-1" href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#work">Projects</a>
-            <a href="#contact">Contact</a>
-        </p>
-        <p>Joshua Hotama &copy; 2025</p>
+    <div class="home__social-float">
+        <a href="https://www.facebook.com/joshua.hotama/" target="_blank"><i class="bi bi-facebook"></i></a>
+        <a href="https://www.linkedin.com/in/joshua-hotama-859823225/" target="_blank"><i class="bi bi-linkedin"></i></a>
+        <a href="https://www.instagram.com/joshuahotama/" target="_blank"><i class="bi bi-instagram"></i></a>
+        <a href="https://github.com/Joshot" target="_blank"><i class="bi bi-github"></i></a>
+    </div>
+    <div class="scroll-indicator">
+        <span>Scroll Down</span>
+        <i class='bx bx-chevron-down'></i>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about section" id="about">
+    <div class="section__container">
+        <div class="section__header reveal">
+            <span class="section__badge">Who I Am</span>
+            <h2 class="section__title">About Me</h2>
+            <div class="section__line"></div>
+        </div>
+        <div class="about__grid">
+            <div class="about__img-wrapper reveal">
+                <div class="about__img-deco"></div>
+                <img src="assets/img/Profile.jpg" alt="Joshua Hotama">
+                <div class="about__experience-badge">
+                    <h3>2+</h3>
+                    <p>Years of<br>Experience</p>
+                </div>
+            </div>
+            <div class="reveal">
+                <h2 class="about__subtitle">Joshua Hotama</h2>
+                <p class="about__role">Full Stack Developer & Fresh Graduate</p>
+                <p class="about__text">
+                    Hello! I'm Joshua Hotama, a passionate Full Stack Developer and Fresh Graduate based in Indonesia. I have hands-on experience in both Frontend and Backend development gained through internships, university projects, and personal builds.
+                </p>
+                <p class="about__text">
+                    My backend toolkit includes MySQL, PostgreSQL, and MongoDB. On the frontend, I work with HTML, CSS, JavaScript, PHP, React, jQuery, Tailwind, and Bootstrap. I also have a strong interest in UI/UX design and use Figma to bring ideas to life.
+                </p>
+                <p class="about__text">
+                    Currently, I'm learning Japanese with the goal of working in Japan, driven by my deep interest in its culture. I believe that continuous learning and a positive work ethic are essential to growing in tech.
+                </p>
+                <div class="about__info-grid">
+                    <div class="about__info-item">
+                        <i class='bx bxs-map'></i>
+                        <div><div class="about__info-label">Location</div><strong>Tangerang, Indonesia</strong></div>
+                    </div>
+                    <div class="about__info-item">
+                        <i class='bx bxs-graduation'></i>
+                        <div><div class="about__info-label">Degree</div><strong>Bachelor's Graduate</strong></div>
+                    </div>
+                    <div class="about__info-item">
+                        <i class='bx bxs-envelope'></i>
+                        <div><div class="about__info-label">Email</div><strong>joshuahotama@gmail.com</strong></div>
+                    </div>
+                    <div class="about__info-item">
+                        <i class='bx bxs-briefcase'></i>
+                        <div><div class="about__info-label">Status</div><strong style="color:green">Open to Work</strong></div>
+                    </div>
+                </div>
+                <div class="about__buttons">
+                    <a href="assets/cv/CV_JoshuaHotamaNEW.pdf" class="btn-sm primary" target="_blank"><i class='bx bx-download'></i> Download CV</a>
+                    <a href="assets/portofolio/PORTOFOLIO JOSSS.pdf" class="btn-sm outline" target="_blank"><i class='bx bx-file'></i> Portfolio PDF</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills section" id="skills">
+    <div class="section__container">
+        <div class="section__header reveal">
+            <span class="section__badge">What I Know</span>
+            <h2 class="section__title">My Skills</h2>
+            <div class="section__line"></div>
+        </div>
+        <div class="skills__tabs reveal">
+            <button class="skills__tab active" data-tab="tech">💻 Technical</button>
+            <button class="skills__tab" data-tab="design">🎨 Design</button>
+            <button class="skills__tab" data-tab="soft">🤝 Soft Skills</button>
+            <button class="skills__tab" data-tab="proficiency">📊 Proficiency</button>
+        </div>
+
+        <!-- Technical Skills -->
+        <div class="skills__panel active" id="tab-tech">
+            <div class="skills__grid reveal">
+                <div class="skill__card"><i class='bx bxl-html5 skill__icon'></i><div class="skill__name">HTML5</div><div class="skill__level" style="width:95%"></div></div>
+                <div class="skill__card"><i class='bx bxl-css3 skill__icon'></i><div class="skill__name">CSS3</div><div class="skill__level" style="width:90%"></div></div>
+                <div class="skill__card"><i class='bx bxl-javascript skill__icon'></i><div class="skill__name">JavaScript</div><div class="skill__level" style="width:80%"></div></div>
+                <div class="skill__card"><i class='bx bxl-php skill__icon'></i><div class="skill__name">PHP</div><div class="skill__level" style="width:75%"></div></div>
+                <div class="skill__card"><i class='bx bxl-react skill__icon'></i><div class="skill__name">React</div><div class="skill__level" style="width:70%"></div></div>
+                <div class="skill__card"><i class='bx bxl-jquery skill__icon'></i><div class="skill__name">jQuery</div><div class="skill__level" style="width:75%"></div></div>
+                <div class="skill__card"><i class='bx bx-data skill__icon'></i><div class="skill__name">MySQL</div><div class="skill__level" style="width:80%"></div></div>
+                <div class="skill__card"><i class='bx bx-data skill__icon'></i><div class="skill__name">MongoDB</div><div class="skill__level" style="width:65%"></div></div>
+                <div class="skill__card"><i class='bx bxl-java skill__icon'></i><div class="skill__name">Java</div><div class="skill__level" style="width:60%"></div></div>
+                <div class="skill__card"><i class='bx bxl-python skill__icon'></i><div class="skill__name">Python</div><div class="skill__level" style="width:60%"></div></div>
+                <div class="skill__card"><i class='bx bx-code-alt skill__icon'></i><div class="skill__name">C#</div><div class="skill__level" style="width:55%"></div></div>
+                <div class="skill__card"><i class='bx bxl-android skill__icon'></i><div class="skill__name">Kotlin</div><div class="skill__level" style="width:50%"></div></div>
+                <div class="skill__card"><i class='bx bx-code-alt skill__icon'></i><div class="skill__name">.NET</div><div class="skill__level" style="width:55%"></div></div>
+                <div class="skill__card"><i class='bx bx-sitemap skill__icon'></i><div class="skill__name">ERP</div><div class="skill__level" style="width:60%"></div></div>
+                <div class="skill__card"><i class='bx bxl-microsoft skill__icon'></i><div class="skill__name">MS Office</div><div class="skill__level" style="width:90%"></div></div>
+                <div class="skill__card"><i class='bx bxl-react skill__icon'></i><div class="skill__name">MERN Stack</div><div class="skill__level" style="width:68%"></div></div>
+            </div>
+        </div>
+
+        <!-- Design Skills -->
+        <div class="skills__panel" id="tab-design">
+            <div class="skills__grid reveal">
+                <div class="skill__card"><i class='bx bxl-figma skill__icon'></i><div class="skill__name">Figma</div><div class="skill__level" style="width:80%"></div></div>
+                <div class="skill__card"><i class='bx bxs-paint skill__icon'></i><div class="skill__name">Canva</div><div class="skill__level" style="width:85%"></div></div>
+                <div class="skill__card"><i class='bx bxl-tailwind-css skill__icon'></i><div class="skill__name">Tailwind</div><div class="skill__level" style="width:75%"></div></div>
+                <div class="skill__card"><i class='bx bxl-bootstrap skill__icon'></i><div class="skill__name">Bootstrap</div><div class="skill__level" style="width:80%"></div></div>
+            </div>
+        </div>
+
+        <!-- Soft Skills -->
+        <div class="skills__panel" id="tab-soft">
+            <div class="skills__grid reveal">
+                <div class="skill__card"><i class='bi bi-people skill__icon'></i><div class="skill__name">Leadership</div><div class="skill__level" style="width:85%"></div></div>
+                <div class="skill__card"><i class='bx bx-user-voice skill__icon'></i><div class="skill__name">Communication</div><div class="skill__level" style="width:90%"></div></div>
+                <div class="skill__card"><i class='bx bx-notebook skill__icon'></i><div class="skill__name">Notion</div><div class="skill__level" style="width:80%"></div></div>
+                <div class="skill__card"><i class='bx bx-bulb skill__icon'></i><div class="skill__name">Problem Solving</div><div class="skill__level" style="width:88%"></div></div>
+                <div class="skill__card"><i class='bx bx-time skill__icon'></i><div class="skill__name">Time Management</div><div class="skill__level" style="width:82%"></div></div>
+                <div class="skill__card"><i class='bx bx-group skill__icon'></i><div class="skill__name">Teamwork</div><div class="skill__level" style="width:92%"></div></div>
+            </div>
+        </div>
+
+        <!-- Proficiency -->
+        <div class="skills__panel" id="tab-proficiency">
+            <div class="skills__progress-section reveal">
+                <div class="progress__item">
+                    <div class="progress__header"><span>HTML & CSS</span><span>95%</span></div>
+                    <div class="progress__bar-bg"><div class="progress__bar-fill" data-width="95"></div></div>
+                </div>
+                <div class="progress__item">
+                    <div class="progress__header"><span>JavaScript</span><span>80%</span></div>
+                    <div class="progress__bar-bg"><div class="progress__bar-fill" data-width="80"></div></div>
+                </div>
+                <div class="progress__item">
+                    <div class="progress__header"><span>PHP & MySQL</span><span>80%</span></div>
+                    <div class="progress__bar-bg"><div class="progress__bar-fill" data-width="80"></div></div>
+                </div>
+                <div class="progress__item">
+                    <div class="progress__header"><span>React / MERN</span><span>70%</span></div>
+                    <div class="progress__bar-bg"><div class="progress__bar-fill" data-width="70"></div></div>
+                </div>
+                <div class="progress__item">
+                    <div class="progress__header"><span>Figma & UI/UX</span><span>78%</span></div>
+                    <div class="progress__bar-bg"><div class="progress__bar-fill" data-width="78"></div></div>
+                </div>
+                <div class="progress__item">
+                    <div class="progress__header"><span>Python</span><span>60%</span></div>
+                    <div class="progress__bar-bg"><div class="progress__bar-fill" data-width="60"></div></div>
+                </div>
+                <div class="progress__item">
+                    <div class="progress__header"><span>Kotlin / Android</span><span>50%</span></div>
+                    <div class="progress__bar-bg"><div class="progress__bar-fill" data-width="50"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="work section" id="work">
+    <div class="section__container">
+        <div class="section__header reveal">
+            <span class="section__badge">What I've Built</span>
+            <h2 class="section__title">My Projects</h2>
+            <div class="section__line"></div>
+        </div>
+        <div class="work__filter reveal">
+            <button class="work__filter-btn active" data-filter="all">All</button>
+            <button class="work__filter-btn" data-filter="web">Web App</button>
+            <button class="work__filter-btn" data-filter="design">UI/UX</button>
+            <button class="work__filter-btn" data-filter="fullstack">Full Stack</button>
+        </div>
+        <div class="work__grid reveal">
+            <div class="work__card" data-category="fullstack">
+                <div class="work__card-img">
+                    <span class="work__card-tag">Full Stack</span>
+                    <img src="assets/img/7daysPic.jpg" alt="7 Days UMN Life">
+                    <div class="work__card-overlay">
+                        <a href="https://seven-days-umn-life.vercel.app/" target="_blank" class="work__overlay-btn"><i class='bx bx-link-external'></i> Live Demo</a>
+                    </div>
+                </div>
+                <div class="work__card-body">
+                    <h3 class="work__card-title">7 Days UMN Life</h3>
+                    <p class="work__card-desc">A web experience project inspired by UMN student life, deployed on Vercel.</p>
+                    <div class="work__card-stack">
+                        <span class="stack-badge">React</span>
+                        <span class="stack-badge">Vercel</span>
+                        <span class="stack-badge">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="work__card" data-category="web">
+                <div class="work__card-img">
+                    <span class="work__card-tag">Web App</span>
+                    <img src="assets/img/medang_lestari.png" alt="Medang Lestari">
+                    <div class="work__card-overlay">
+                        <a href="https://rwsebelasmedanglestari.com/" target="_blank" class="work__overlay-btn"><i class='bx bx-link-external'></i> Live Demo</a>
+                    </div>
+                </div>
+                <div class="work__card-body">
+                    <h3 class="work__card-title">RW Sebelas Medang Lestari</h3>
+                    <p class="work__card-desc">Community management portal with resident information system.</p>
+                    <div class="work__card-stack">
+                        <span class="stack-badge">PHP</span>
+                        <span class="stack-badge">MySQL</span>
+                        <span class="stack-badge">Bootstrap</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="work__card" data-category="web">
+                <div class="work__card-img">
+                    <span class="work__card-tag">Web App</span>
+                    <img src="assets/img/umnLife.jpg" alt="UMN Life">
+                    <div class="work__card-overlay">
+                        <a href="https://beamish-pavlova-da1cee.netlify.app/#" target="_blank" class="work__overlay-btn"><i class='bx bx-link-external'></i> Live Demo</a>
+                    </div>
+                </div>
+                <div class="work__card-body">
+                    <h3 class="work__card-title">UMN Life</h3>
+                    <p class="work__card-desc">Campus life web app deployed on Netlify for UMN students.</p>
+                    <div class="work__card-stack">
+                        <span class="stack-badge">HTML</span>
+                        <span class="stack-badge">CSS</span>
+                        <span class="stack-badge">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="work__card" data-category="design">
+                <div class="work__card-img">
+                    <span class="work__card-tag">UI/UX</span>
+                    <img src="assets/img/prototipe.jpg" alt="E-Learning Prototype">
+                    <div class="work__card-overlay">
+                        <a href="https://www.figma.com/proto/cFJQz8sOqjci3WdOpCKYk8/Prototype-E-Learning-UAS" target="_blank" class="work__overlay-btn"><i class='bx bx-link-external'></i> View Proto</a>
+                    </div>
+                </div>
+                <div class="work__card-body">
+                    <h3 class="work__card-title">E-Learning Prototype</h3>
+                    <p class="work__card-desc">Full UI/UX prototype for an e-learning platform designed in Figma.</p>
+                    <div class="work__card-stack">
+                        <span class="stack-badge">Figma</span>
+                        <span class="stack-badge">Prototyping</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="work__card" data-category="design">
+                <div class="work__card-img">
+                    <span class="work__card-tag">UI/UX</span>
+                    <img src="assets/img/SOP.png" alt="SOP Project">
+                    <div class="work__card-overlay">
+                        <a href="https://www.figma.com/proto/E21WkDsWCddK9BpbKIJsjG/Project-SOP" target="_blank" class="work__overlay-btn"><i class='bx bx-link-external'></i> View Proto</a>
+                    </div>
+                </div>
+                <div class="work__card-body">
+                    <h3 class="work__card-title">SOP Management System</h3>
+                    <p class="work__card-desc">UI design for a Standard Operating Procedure management system.</p>
+                    <div class="work__card-stack">
+                        <span class="stack-badge">Figma</span>
+                        <span class="stack-badge">UI Design</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="work__card" data-category="fullstack">
+                <div class="work__card-img">
+                    <span class="work__card-tag">Full Stack</span>
+                    <img src="assets/img/cendanaMotorPic.jpg" alt="Cendana Motor">
+                    <div class="work__card-overlay">
+                        <a href="https://cendanamotor.my.id/" target="_blank" class="work__overlay-btn"><i class='bx bx-link-external'></i> Live Demo</a>
+                    </div>
+                </div>
+                <div class="work__card-body">
+                    <h3 class="work__card-title">Cendana Motor</h3>
+                    <p class="work__card-desc">Full business management system for a motor garage including inventory and transactions.</p>
+                    <div class="work__card-stack">
+                        <span class="stack-badge">Laravel</span>
+                        <span class="stack-badge">MySQL</span>
+                        <span class="stack-badge">Bootstrap</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact section" id="contact">
+    <div class="section__container">
+        <div class="section__header reveal">
+            <span class="section__badge">Get In Touch</span>
+            <h2 class="section__title">Contact Me</h2>
+            <div class="section__line"></div>
+        </div>
+        <div class="contact__grid">
+            <div class="reveal">
+                <h3 class="contact__info-title">Let's Work Together!</h3>
+                <p class="contact__info-desc">I'm currently open to new opportunities. Whether you have a project in mind or just want to connect, feel free to reach out!</p>
+                <div class="contact__card">
+                    <div class="contact__card-icon"><i class='bx bx-envelope'></i></div>
+                    <div>
+                        <div class="contact__card-label">Email</div>
+                        <div class="contact__card-value">joshuahotama@gmail.com</div>
+                    </div>
+                </div>
+                <div class="contact__card">
+                    <div class="contact__card-icon"><i class='bx bxs-map'></i></div>
+                    <div>
+                        <div class="contact__card-label">Location</div>
+                        <div class="contact__card-value">Tangerang, Indonesia</div>
+                    </div>
+                </div>
+                <div class="contact__card">
+                    <div class="contact__card-icon"><i class='bx bxl-linkedin'></i></div>
+                    <div>
+                        <div class="contact__card-label">LinkedIn</div>
+                        <div class="contact__card-value">joshua-hotama-859823225</div>
+                    </div>
+                </div>
+                <div class="contact__social">
+                    <a href="https://www.facebook.com/joshua.hotama/" class="contact__social-btn" target="_blank"><i class="bi bi-facebook"></i></a>
+                    <a href="https://www.linkedin.com/in/joshua-hotama-859823225/" class="contact__social-btn" target="_blank"><i class="bi bi-linkedin"></i></a>
+                    <a href="https://www.instagram.com/joshuahotama/" class="contact__social-btn" target="_blank"><i class="bi bi-instagram"></i></a>
+                    <a href="https://github.com/Joshot" class="contact__social-btn" target="_blank"><i class="bi bi-github"></i></a>
+                </div>
+            </div>
+            <div class="reveal">
+                <div class="contact__form-wrapper">
+                    <form id="contact-form">
+                        <div class="form__grid">
+                            <div class="form__group">
+                                <label class="form__label">Full Name</label>
+                                <input type="text" class="form__input" placeholder="Your name" required>
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label">Email Address</label>
+                                <input type="email" class="form__input" placeholder="your@email.com" required>
+                            </div>
+                        </div>
+                        <div class="form__group">
+                            <label class="form__label">Subject</label>
+                            <input type="text" class="form__input" placeholder="What's this about?">
+                        </div>
+                        <div class="form__group">
+                            <label class="form__label">Message</label>
+                            <textarea class="form__textarea" placeholder="Tell me about your project or just say hi!" required></textarea>
+                        </div>
+                        <button type="submit" class="form__submit">
+                            <i class='bx bx-send'></i> Send Message
+                        </button>
+                    </form>
+                    <div class="form__success" id="formSuccess">
+                        <i class='bx bx-check-circle' style="color:green"></i>
+                        <h3>Message Sent!</h3>
+                        <p>Thanks for reaching out. I'll get back to you soon!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer__container">
+        <div class="footer__top">
+            <div>
+                <div class="footer__brand-name">Joshua <span>Hotama</span></div>
+                <p class="footer__brand-desc">Full Stack Developer & Fresh Graduate passionate about creating impactful digital solutions.</p>
+                <div class="footer__social">
+                    <a href="https://www.facebook.com/joshua.hotama/" target="_blank"><i class="bi bi-facebook"></i></a>
+                    <a href="https://www.linkedin.com/in/joshua-hotama-859823225/" target="_blank"><i class="bi bi-linkedin"></i></a>
+                    <a href="https://www.instagram.com/joshuahotama/" target="_blank"><i class="bi bi-instagram"></i></a>
+                    <a href="https://github.com/Joshot" target="_blank"><i class="bi bi-github"></i></a>
+                </div>
+            </div>
+            <div>
+                <div class="footer__col-title">Navigation</div>
+                <div class="footer__links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#work">Projects</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+            <div>
+                <div class="footer__col-title">Download</div>
+                <div class="footer__links">
+                    <a href="assets/cv/CV_JoshuaHotamaNEW.pdf" target="_blank">Resume / CV</a>
+                    <a href="assets/portofolio/PORTOFOLIO JOSSS.pdf" target="_blank">Portfolio PDF</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p class="footer__copy">© 2025 Joshua Hotama. All rights reserved.</p>
+            <p class="footer__made">Made with <span>♥</span> in Indonesia</p>
+        </div>
     </div>
 </footer>
 
-<!--===== SCROLL =====-->
+<!-- PARTICLES JS -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script src="https://unpkg.com/scrollreveal"></script>
 
-<!--===== MAIN JS =====-->
 <script>
-    /*===== MENU SHOW =====*/
-    const showMenu = (toggleId, navId) => {
-        const toggle = document.getElementById(toggleId),
-            nav = document.getElementById(navId)
-
-        if(toggle && nav){
-            toggle.addEventListener('click', () => {
-                nav.classList.toggle('show')
-            })
-        }
-    }
-    showMenu('nav-toggle','nav-menu')
-
-    /*==================== REMOVE MENU MOBILE ====================*/
-    const navLink = document.querySelectorAll('.nav__link')
-
-    function linkAction(){
-        const navMenu = document.getElementById('nav-menu')
-        navMenu.classList.remove('show')
-    }
-    navLink.forEach(n => n.addEventListener('click', linkAction))
-
-    /*==================== SCROLL SECTIONS ACTIVE LINK ====================*/
-    const sections = document.querySelectorAll('section[id]')
-
-    function scrollActive(){
-        const scrollY = window.pageYOffset
-
-        sections.forEach(current => {
-            const sectionHeight = current.offsetHeight
-            const sectionTop = current.offsetTop - 50;
-            sectionId = current.getAttribute('id')
-
-            if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight){
-                document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.add('active')
-            }else{
-                document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.remove('active')
-            }
-        })
-    }
-    window.addEventListener('scroll', scrollActive)
-
-    /*===== SCROLL REVEAL ANIMATION =====*/
-    const sr = ScrollReveal({
-        origin: 'top',
-        distance: '60px',
-        duration: 2000,
-        delay: 200
+    // ===== LOADER =====
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            document.getElementById('loader').classList.add('hide');
+        }, 2200);
     });
 
-    sr.reveal('.home__data, .about__img, .skills__subtitle, .skills__text',{});
-    sr.reveal('.home__img, .about__subtitle, .about__text, .skills__img',{delay: 400});
-    sr.reveal('.home__social-icon',{ interval: 200});
-    sr.reveal('.skills__data, .work__img, .contact__input',{interval: 200});
+    // ===== CURSOR =====
+    const cursor = document.getElementById('cursor');
+    const follower = document.getElementById('cursorFollower');
+    let mouseX = 0, mouseY = 0, followerX = 0, followerY = 0;
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX; mouseY = e.clientY;
+        cursor.style.transform = `translate(${mouseX - 10}px, ${mouseY - 10}px)`;
+    });
+    function animateFollower() {
+        followerX += (mouseX - followerX) * 0.1;
+        followerY += (mouseY - followerY) * 0.1;
+        follower.style.transform = `translate(${followerX - 20}px, ${followerY - 20}px)`;
+        requestAnimationFrame(animateFollower);
+    }
+    animateFollower();
+    document.querySelectorAll('a, button, .skill__card').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.style.transform += ' scale(2)');
+        el.addEventListener('mouseleave', () => {});
+    });
+
+    // ===== PARTICLES =====
+    particlesJS('particles-js', {
+        particles: {
+            number: { value: 60, density: { enable: true, value_area: 800 } },
+            color: { value: '#4361ee' },
+            shape: { type: 'circle' },
+            opacity: { value: 0.3, random: true },
+            size: { value: 3, random: true },
+            line_linked: { enable: true, distance: 150, color: '#4361ee', opacity: 0.15, width: 1 },
+            move: { enable: true, speed: 1.5, direction: 'none', random: true, out_mode: 'out' }
+        },
+        interactivity: {
+            detect_on: 'canvas',
+            events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: true, mode: 'push' } },
+            modes: { grab: { distance: 140, line_linked: { opacity: 0.5 } }, push: { particles_nb: 3 } }
+        }
+    });
+
+    // ===== TYPEWRITER =====
+    const texts = ['Full Stack Developer', 'UI/UX Enthusiast', 'React Developer', 'Fresh Graduate', 'Problem Solver'];
+    let ti = 0, ci = 0, deleting = false;
+    const el = document.getElementById('typewriter');
+    function type() {
+        const current = texts[ti];
+        if (!deleting) {
+            el.textContent = current.slice(0, ++ci);
+            if (ci === current.length) { deleting = true; setTimeout(type, 1800); return; }
+        } else {
+            el.textContent = current.slice(0, --ci);
+            if (ci === 0) { deleting = false; ti = (ti + 1) % texts.length; }
+        }
+        setTimeout(type, deleting ? 60 : 100);
+    }
+    type();
+
+    // ===== NAV TOGGLE =====
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    navToggle.addEventListener('click', () => navMenu.classList.toggle('show'));
+    document.querySelectorAll('.nav__link').forEach(link => {
+        link.addEventListener('click', () => navMenu.classList.remove('show'));
+    });
+
+    // ===== HEADER SCROLL =====
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        const btt = document.getElementById('backToTop');
+        if (window.scrollY > 80) { header.classList.add('scrolled'); btt.classList.add('show'); }
+        else { header.classList.remove('scrolled'); btt.classList.remove('show'); }
+    });
+
+    // ===== ACTIVE NAV =====
+    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+        const scrollY = window.pageYOffset;
+        sections.forEach(s => {
+            const top = s.offsetTop - 100, height = s.offsetHeight, id = s.id;
+            const link = document.querySelector(`.nav__link[href="#${id}"]`);
+            if (link) {
+                if (scrollY >= top && scrollY < top + height) link.classList.add('active');
+                else link.classList.remove('active');
+            }
+        });
+    });
+
+    // ===== SKILLS TABS =====
+    document.querySelectorAll('.skills__tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.skills__tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.skills__panel').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+            // Trigger progress bars
+            if (tab.dataset.tab === 'proficiency') animateBars();
+        });
+    });
+
+    // ===== PROGRESS BARS =====
+    function animateBars() {
+        document.querySelectorAll('.progress__bar-fill').forEach(bar => {
+            bar.style.width = bar.dataset.width + '%';
+        });
+    }
+
+    // ===== PROJECT FILTER =====
+    document.querySelectorAll('.work__filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.work__filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const filter = btn.dataset.filter;
+            document.querySelectorAll('.work__card').forEach(card => {
+                if (filter === 'all' || card.dataset.category === filter) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeInUp 0.4s ease';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // ===== CONTACT FORM =====
+    document.getElementById('contact-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        document.getElementById('contact-form').style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+    });
+
+    // ===== SCROLL REVEAL =====
+    const sr = ScrollReveal({ origin: 'bottom', distance: '50px', duration: 900, delay: 100, reset: false });
+    sr.reveal('.reveal', { interval: 150 });
+
+    // ===== COUNTER ANIMATION =====
+    function animateCounter(el, target, duration = 1500) {
+        let start = 0;
+        const step = target / (duration / 16);
+        const timer = setInterval(() => {
+            start += step;
+            if (start >= target) { el.textContent = target + '+'; clearInterval(timer); return; }
+            el.textContent = Math.floor(start) + '+';
+        }, 16);
+    }
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                document.querySelectorAll('.home__stat h3').forEach(el => {
+                    const val = parseInt(el.textContent);
+                    animateCounter(el, val);
+                });
+                counterObserver.disconnect();
+            }
+        });
+    });
+    const statsEl = document.querySelector('.home__stats');
+    if (statsEl) counterObserver.observe(statsEl);
 </script>
 </body>
 </html>
