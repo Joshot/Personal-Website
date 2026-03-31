@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="assets/img/logoHtml.png">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -24,12 +26,14 @@
                         fillBar:  { from: { width: '0' }, to: { width: '100%' } },
                         blob:     { '0%,100%': { borderRadius: '38% 62% 63% 37% / 41% 44% 56% 59%' }, '50%': { borderRadius: '62% 38% 37% 63% / 59% 56% 44% 41%' } },
                         bounce2:  { '0%,100%': { transform: 'translateX(-50%) translateY(0)' }, '50%': { transform: 'translateX(-50%) translateY(-7px)' } },
+                        slideUp:  { from: { opacity: '0', transform: 'translateX(-50%) translateY(20px)' }, to: { opacity: '1', transform: 'translateX(-50%) translateY(0)' } },
                     },
                     animation: {
                         fadeUp:  'fadeUp .6s ease both',
                         fillBar: 'fillBar 1.8s ease forwards',
                         blob:    'blob 7s ease-in-out infinite alternate',
                         bounce2: 'bounce2 2s infinite',
+                        slideUp: 'slideUp .5s ease both',
                     }
                 }
             }
@@ -49,20 +53,12 @@
         #loader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
         .loader-fill { height: 100%; background: #4361ee; border-radius: 10px; animation: fillBar 1.8s ease forwards; }
 
-        /* Nav mobile */
-        #nav-menu.show { display: flex; }
-
         /* Blob image */
         .blob-img { border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%; animation: blob 7s ease-in-out infinite alternate; }
 
         /* Reveal */
         .reveal { opacity: 0; transform: translateY(28px); transition: opacity .55s ease, transform .55s ease; }
         .reveal.vis { opacity: 1; transform: translateY(0); }
-
-        /* Nav active underline */
-        .nav-link::after { content: ''; display: block; height: 2px; width: 0; background: #4361ee; transition: width .25s; }
-        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-        .nav-link.active, .nav-link:hover { color: #4361ee; }
 
         /* Skill card hover overlay */
         .skill-card::before { content: ''; position: absolute; inset: 0; background: #4361ee; opacity: 0; transition: opacity .25s; border-radius: 14px; }
@@ -83,6 +79,101 @@
         /* Tab active */
         .skill-tab.active { background: #4361ee; color: #fff; border-color: #4361ee; }
         .filter-btn.active { background: #4361ee; color: #fff; border-color: #4361ee; }
+
+        /* ============================================
+        iPhone-style Bottom Nav (Glassmorphism Light)
+        ============================================ */
+        #header {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            z-index: 40;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+            box-shadow: 0 1px 0 rgba(255,255,255,0.9) inset;
+            transition: box-shadow 0.3s;
+        }
+
+        #bottom-nav {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 50;
+            animation: slideUp .5s ease both;
+
+            /* Glassmorphism pill — light/white version */
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(28px) saturate(200%);
+            -webkit-backdrop-filter: blur(28px) saturate(200%);
+
+            /* Border kaca — gradien tipis */
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            outline: 1px solid rgba(0, 0, 0, 0.07);
+            border-radius: 9999px;
+
+            /* Shadow berlapis biar terasa floating & ada depth */
+            box-shadow:
+                0 2px 0px rgba(255,255,255,0.95) inset,   /* highlight atas seperti kaca */
+                0 -1px 0px rgba(0,0,0,0.06) inset,         /* shadow bawah dalam */
+                0 8px 32px rgba(0, 0, 0, 0.12),
+                0 2px 8px rgba(0, 0, 0, 0.08),
+                0 0 0 1px rgba(255,255,255,0.6);
+
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            padding: 8px 16px;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            color: rgba(13, 27, 42, 0.45);   /* dark tapi agak fade */
+            text-decoration: none;
+            white-space: nowrap;
+            position: relative;
+            font-weight: 600;
+        }
+
+        .nav-item:hover {
+            background: rgba(67, 97, 238, 0.09);
+            color: #4361ee;
+        }
+
+        .nav-item.active {
+            background: #4361ee;
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(67, 97, 238, 0.45);
+        }
+
+        .nav-item svg {
+            width: 20px;
+            height: 20px;
+            stroke-width: 2;
+        }
+
+        .nav-label {
+            font-size: 10px;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 0.02em;
+        }
+
+        /* Mobile: hide labels */
+        @media (max-width: 640px) {
+            .nav-label { display: none; }
+            .nav-item { padding: 8px 12px; }
+            #bottom-nav { padding: 8px 12px; gap: 2px; }
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-dark font-poppins">
@@ -96,37 +187,47 @@
 </div>
 
 <!-- BACK TO TOP -->
-<a href="#home" id="backTop" class="fixed bottom-7 right-7 w-11 h-11 bg-primary text-white rounded-xl flex items-center justify-center text-xl shadow-lg opacity-0 invisible z-50 transition-all hover:-translate-y-1">
+<a href="#home" id="backTop" class="fixed bottom-28 right-7 w-11 h-11 bg-primary text-white rounded-xl flex items-center justify-center text-xl shadow-lg opacity-0 invisible z-50 transition-all hover:-translate-y-1">
     <i class='bx bx-up-arrow-alt'></i>
 </a>
 
-<!-- HEADER -->
-<header id="header" class="fixed top-0 left-0 w-full z-40 bg-white/95 backdrop-blur border-b border-black/5 transition-shadow">
-    <nav class="max-w-6xl mx-auto h-[68px] flex justify-between items-center px-6">
-        <a href="#home" class="text-xl font-black text-dark">Joshua <span class="text-primary">Hotama</span></a>
-        <ul id="nav-menu" class="hidden md:flex items-center gap-8">
-            <li><a href="#home"    class="nav-link text-sm font-medium text-dark transition-colors">Home</a></li>
-            <li><a href="#about"   class="nav-link text-sm font-medium text-dark transition-colors">About</a></li>
-            <li><a href="#skills"  class="nav-link text-sm font-medium text-dark transition-colors">Skills</a></li>
-            <li><a href="#work"    class="nav-link text-sm font-medium text-dark transition-colors">Projects</a></li>
-            <li><a href="#contact" class="nav-link text-sm font-medium text-dark transition-colors">Contact</a></li>
-            <li><a href="assets/cv/CV_Joshua.pdf" target="_blank" class="bg-primary text-white text-sm font-semibold px-5 py-2 rounded-full flex items-center gap-2 hover:bg-accent transition-colors"><i class='bx bx-download'></i> Resume</a></li>
-        </ul>
-        <button id="nav-toggle" class="md:hidden text-2xl text-dark"><i class='bx bx-menu'></i></button>
+<!-- HEADER — Name only -->
+<header id="header">
+    <nav class="max-w-6xl mx-auto h-[60px] flex justify-center items-center px-6">
+        <a href="#home" class="text-xl font-black text-dark tracking-tight">Joshua <span class="text-primary">Hotama</span></a>
     </nav>
-    <!-- Mobile menu -->
-    <ul id="nav-menu-mobile" class="hidden flex-col md:hidden bg-white/98 backdrop-blur px-6 pb-4 shadow-lg">
-        <li class="py-3 border-b border-black/5"><a href="#home"    class="text-sm font-medium" onclick="closeMobile()">Home</a></li>
-        <li class="py-3 border-b border-black/5"><a href="#about"   class="text-sm font-medium" onclick="closeMobile()">About</a></li>
-        <li class="py-3 border-b border-black/5"><a href="#skills"  class="text-sm font-medium" onclick="closeMobile()">Skills</a></li>
-        <li class="py-3 border-b border-black/5"><a href="#work"    class="text-sm font-medium" onclick="closeMobile()">Projects</a></li>
-        <li class="py-3 border-b border-black/5"><a href="#contact" class="text-sm font-medium" onclick="closeMobile()">Contact</a></li>
-        <li class="pt-3"><a href="assets/cv/CV_Joshua.pdf" target="_blank" class="bg-primary text-white text-sm font-semibold px-5 py-2 rounded-full inline-flex items-center gap-2"><i class='bx bx-download'></i> Resume</a></li>
-    </ul>
 </header>
 
+<!-- BOTTOM FLOATING NAV (iPhone style) -->
+<nav id="bottom-nav">
+    <a href="#home" class="nav-item active" data-section="home">
+        <i data-lucide="house" class="lucide-icon"></i>
+        <span class="nav-label">Home</span>
+    </a>
+    <a href="#about" class="nav-item" data-section="about">
+        <i data-lucide="user-round" class="lucide-icon"></i>
+        <span class="nav-label">About</span>
+    </a>
+    <a href="#skills" class="nav-item" data-section="skills">
+        <i data-lucide="code-2" class="lucide-icon"></i>
+        <span class="nav-label">Skills</span>
+    </a>
+    <a href="#work" class="nav-item" data-section="work">
+        <i data-lucide="folder-open" class="lucide-icon"></i>
+        <span class="nav-label">Projects</span>
+    </a>
+    <a href="#contact" class="nav-item" data-section="contact">
+        <i data-lucide="mail" class="lucide-icon"></i>
+        <span class="nav-label">Contact</span>
+    </a>
+    <a href="assets/cv/CV_Joshua.pdf" target="_blank" class="nav-item" style="background:rgba(247,37,133,0.75); color:#fff; box-shadow: 0 4px 16px rgba(247,37,133,0.4);">
+        <i data-lucide="download" class="lucide-icon"></i>
+        <span class="nav-label">Resume</span>
+    </a>
+</nav>
+
 <!-- HOME -->
-<section id="home" class="min-h-screen bg-dark flex items-center pt-[68px] relative overflow-hidden">
+<section id="home" class="min-h-screen bg-dark flex items-center pt-[60px] relative overflow-hidden">
     <!-- subtle glow -->
     <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
     <div class="max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full relative">
@@ -652,6 +753,9 @@
 </footer>
 
 <script>
+    // Init Lucide Icons
+    lucide.createIcons();
+
     // LOADER
     window.addEventListener('load', () => setTimeout(() => document.getElementById('loader').classList.add('hide'), 2000));
 
@@ -668,21 +772,7 @@
     }
     type();
 
-    // MOBILE NAV
-    const navToggle = document.getElementById('nav-toggle');
-    const mobileMenu = document.getElementById('nav-menu-mobile');
-    navToggle.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        mobileMenu.classList.toggle('flex');
-        navToggle.innerHTML = mobileMenu.classList.contains('flex') ? "<i class='bx bx-x'></i>" : "<i class='bx bx-menu'></i>";
-    });
-    function closeMobile() {
-        mobileMenu.classList.add('hidden');
-        mobileMenu.classList.remove('flex');
-        navToggle.innerHTML = "<i class='bx bx-menu'></i>";
-    }
-
-    // HEADER SCROLL + BACK TO TOP
+    // HEADER SCROLL
     const header = document.getElementById('header');
     const btt = document.getElementById('backTop');
     window.addEventListener('scroll', () => {
@@ -695,15 +785,16 @@
         activeNav();
     }, { passive: true });
 
-    // ACTIVE NAV
+    // ACTIVE BOTTOM NAV
     const secs = document.querySelectorAll('section[id]');
     function activeNav() {
         const y = window.pageYOffset;
         secs.forEach(s => {
-            const link = document.querySelector(`.nav-link[href="#${s.id}"]`);
+            const link = document.querySelector(`#bottom-nav .nav-item[data-section="${s.id}"]`);
             if (link) link.classList.toggle('active', y >= s.offsetTop - 80 && y < s.offsetTop + s.offsetHeight - 80);
         });
     }
+    activeNav();
 
     // SKILL TABS
     document.querySelectorAll('.skill-tab').forEach(tab => {
@@ -733,7 +824,7 @@
         });
     });
 
-    // SCROLL REVEAL (native — no library)
+    // SCROLL REVEAL
     const revEls = document.querySelectorAll('.reveal');
     const revObs = new IntersectionObserver(entries => {
         entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); revObs.unobserve(e.target); } });
