@@ -289,7 +289,7 @@
 <!-- HOME -->
 <section id="home" class="min-h-screen bg-dark flex items-center pt-[60px] relative overflow-hidden">
 
-    <!-- Background — subtle, tidak berlebihan -->
+    <!-- Background -->
     <div class="absolute top-[-100px] right-[-100px] w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] pointer-events-none"></div>
     <div class="absolute bottom-[-80px] left-[-80px] w-[350px] h-[350px] bg-indigo-900/30 rounded-full blur-[100px] pointer-events-none"></div>
 
@@ -307,7 +307,7 @@
                     </span>
                 </div>
 
-                <!-- Heading — lebih casual, bukan robot -->
+                <!-- Heading -->
                 <h1 class="font-black text-white leading-[1.05] mb-6">
                     <span class="block text-white/40 text-lg lg:text-xl font-semibold tracking-wide mb-2">Hi there, I'm</span>
                     <span class="block text-5xl lg:text-7xl text-white">Joshua</span>
@@ -324,8 +324,8 @@
 
                 <!-- Desc -->
                 <p class="text-white/35 text-sm leading-[1.9] mb-9 max-w-[420px]">
-                    Fresh graduate dari Indonesia, senang bikin hal yang kelihatannya susah jadi simpel —
-                    mulai dari UI yang rapi sampai backend yang beres.
+                    Fresh graduate who enjoys turning complex problems into clean,
+                    functional solutions — from pixel-perfect interfaces to solid backend systems.
                 </p>
 
                 <!-- CTA -->
@@ -340,7 +340,7 @@
                     </a>
                 </div>
 
-                <!-- Stats — minimalist -->
+                <!-- Stats -->
                 <div class="flex items-center gap-8">
                     <div>
                         <p class="text-3xl font-black text-white" data-count="20">0+</p>
@@ -362,8 +362,6 @@
             <!-- RIGHT: Photo -->
             <div class="order-1 lg:order-2 flex justify-center lg:justify-end">
                 <div class="relative">
-
-                    <!-- Photo -->
                     <div class="relative w-[260px] lg:w-[340px]">
 
                         <!-- Glow -->
@@ -376,19 +374,18 @@
                                  alt="Joshua Hotama"
                                  class="w-full h-full object-cover"
                                  style="object-position: center bottom;">
-                            <!-- gradient top — biar blend sama dark bg -->
                             <div class="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-dark/30 to-transparent"></div>
                         </div>
 
-                        <!-- Floating card: lokasi -->
+                        <!-- Floating card: University -->
                         <div class="absolute -bottom-5 -right-5 bg-dark/80 backdrop-blur-xl border border-white/10 rounded-2xl px-4 py-3 shadow-2xl">
                             <div class="flex items-center gap-2.5">
                                 <div class="w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center">
-                                    <i class='bx bxs-map-pin text-primary text-xs'></i>
+                                    <i class='bx bxs-graduation text-primary text-xs'></i>
                                 </div>
                                 <div>
-                                    <p class="text-white text-[11px] font-bold leading-none">Tangerang</p>
-                                    <p class="text-white/35 text-[10px] mt-0.5">Indonesia 🇮🇩</p>
+                                    <p class="text-white text-[11px] font-bold leading-none">Universitas Multimedia</p>
+                                    <p class="text-white/35 text-[10px] mt-0.5">Nusantara · Class of 2025</p>
                                 </div>
                             </div>
                         </div>
@@ -408,6 +405,34 @@
 
         </div>
     </div>
+
+    <!-- Social float — desktop -->
+    <div class="hidden lg:flex flex-col gap-2.5 absolute left-5 top-1/2 -translate-y-1/2">
+        <a href="https://www.facebook.com/joshua.hotama/" target="_blank"
+           class="w-8 h-8 bg-white/5 border border-white/8 rounded-full flex items-center justify-center text-white/30 text-xs hover:bg-primary hover:text-white hover:border-primary transition-all">
+            <i class="bi bi-facebook"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/joshua-hotama-859823225/" target="_blank"
+           class="w-8 h-8 bg-white/5 border border-white/8 rounded-full flex items-center justify-center text-white/30 text-xs hover:bg-primary hover:text-white hover:border-primary transition-all">
+            <i class="bi bi-linkedin"></i>
+        </a>
+        <a href="https://www.instagram.com/joshuahotama/" target="_blank"
+           class="w-8 h-8 bg-white/5 border border-white/8 rounded-full flex items-center justify-center text-white/30 text-xs hover:bg-primary hover:text-white hover:border-primary transition-all">
+            <i class="bi bi-instagram"></i>
+        </a>
+        <a href="https://github.com/Joshot" target="_blank"
+           class="w-8 h-8 bg-white/5 border border-white/8 rounded-full flex items-center justify-center text-white/30 text-xs hover:bg-primary hover:text-white hover:border-primary transition-all">
+            <i class="bi bi-github"></i>
+        </a>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-dn flex flex-col items-center gap-1 text-white/15 text-[9px]">
+        <span class="uppercase tracking-[0.2em]">Scroll</span>
+        <i class='bx bx-chevron-down text-base'></i>
+    </div>
+
+</section>
 
     <!-- Social float — desktop -->
     <div class="hidden lg:flex flex-col gap-2.5 absolute left-5 top-1/2 -translate-y-1/2">
