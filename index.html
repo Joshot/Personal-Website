@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joshua Hotama - Portfolio</title>
+    <title>Hyvaroo - Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"/>
@@ -94,7 +94,6 @@
                         box-shadow 0.3s ease;
         }
 
-        /* STATE 1: Di HOME — full transparan */
         #header.navbar-transparent {
             background: transparent;
             backdrop-filter: none;
@@ -103,7 +102,6 @@
             box-shadow: none;
         }
 
-        /* STATE 2: Setelah scroll — glassmorphism solid */
         #header.navbar-scrolled {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px) saturate(180%);
@@ -113,15 +111,14 @@
                         0 4px 20px rgba(0, 0, 0, 0.08);
         }
 
-        /* Brand warna saat transparan (di HOME) */
-        #header.navbar-transparent .brand-joshua { color: #FFFFFF; }
-        #header.navbar-transparent .brand-hotama { color: #E5E5E5; }
+        /* Brand colors — transparent state */
+        #header.navbar-transparent .brand-hyva { color: #FFFFFF; }
+        #header.navbar-transparent .brand-roo  { color: #D4D4D4; }
 
-        /* Brand warna saat scrolled */
-        #header.navbar-scrolled .brand-joshua { color: #0d1b2a; }
-        #header.navbar-scrolled .brand-hotama { color: #4361ee; }
+        /* Brand colors — scrolled state */
+        #header.navbar-scrolled .brand-hyva { color: #0d1b2a; }
+        #header.navbar-scrolled .brand-roo  { color: #6b7280; }
 
-        /* Mobile: sedikit ada tint gelap agar tetap readable */
         @media (max-width: 768px) {
             #header.navbar-transparent {
                 background: rgba(0, 0, 0, 0.10);
@@ -196,14 +193,12 @@
             letter-spacing: 0.02em;
         }
 
-        /* Mobile: hide labels */
         @media (max-width: 640px) {
             .nav-label { display: none; }
             .nav-item { padding: 8px 12px; }
             #bottom-nav { padding: 8px 12px; gap: 2px; }
         }
 
-        /* Mobile tap overlay */
         @media (hover: none) {
             .work-overlay {
                 opacity: 0;
@@ -214,7 +209,6 @@
                 opacity: 1;
                 pointer-events: auto;
             }
-            /* Kasih hint visual bahwa card bisa di-tap */
             .work-card::after {
                 content: '';
                 position: absolute;
@@ -227,7 +221,6 @@
             .work-card.tapped::after {
                 border-color: #4361ee44;
             }
-            /* Cursor jadi pointer di mobile */
             .work-card {
                 cursor: pointer;
             }
@@ -238,7 +231,7 @@
 
 <!-- LOADER -->
 <div id="loader">
-    <p class="text-white text-4xl font-black tracking-widest animate-fadeUp">J<span class="text-primary">H</span></p>
+    <p class="text-white text-4xl font-black tracking-widest animate-fadeUp">H<span class="text-primary">V</span></p>
     <div class="w-44 h-[3px] bg-white/10 rounded-full mt-5 overflow-hidden animate-fadeUp">
         <div class="loader-fill"></div>
     </div>
@@ -249,11 +242,11 @@
     <i class='bx bx-up-arrow-alt'></i>
 </a>
 
-<!-- ✅ HEADER — Sudah dimodifikasi dengan navbar-transparent/scrolled + brand split warna -->
+<!-- HEADER -->
 <header id="header" class="navbar-transparent">
     <nav class="max-w-6xl mx-auto h-[60px] flex justify-center items-center px-6">
         <a href="#home" class="text-xl font-black tracking-tight">
-            <span class="brand-joshua">Joshua</span> <span class="brand-hotama">Hotama</span>
+            <span class="brand-hyva">Hyva</span><span class="brand-roo">roo</span>
         </a>
     </nav>
 </header>
@@ -307,12 +300,17 @@
                     </span>
                 </div>
 
-                <!-- Heading -->
-                <h1 class="font-black text-white leading-[1.05] mb-6">
-                    <span class="block text-white/40 text-lg lg:text-xl font-semibold tracking-wide mb-2">Hi there, I'm</span>
-                    <span class="block text-5xl lg:text-7xl text-white">Joshua</span>
-                    <span class="block text-5xl lg:text-7xl text-primary">Hotama.</span>
-                </h1>
+                <!-- Open for Freelance / Open for Projects badges -->
+                <div class="flex flex-wrap gap-3 mb-6">
+                    <div class="inline-flex items-center gap-2 bg-primary/15 border border-primary/30 text-white px-5 py-3 rounded-2xl font-semibold text-sm shadow-lg shadow-primary/10">
+                        <i class="bx bx-briefcase text-primary text-base"></i>
+                        Open for Freelance
+                    </div>
+                    <div class="inline-flex items-center gap-2 bg-white/8 border border-white/15 text-white px-5 py-3 rounded-2xl font-semibold text-sm shadow-lg">
+                        <i class="bx bx-rocket text-white/70 text-base"></i>
+                        Open for Projects
+                    </div>
+                </div>
 
                 <!-- Typewriter -->
                 <div class="flex items-center gap-3 mb-5">
@@ -371,7 +369,7 @@
                         <div class="relative rounded-[1.75rem] overflow-hidden shadow-2xl shadow-black/60"
                              style="aspect-ratio: 3/4;">
                             <img src="assets/img/pofil.jpg"
-                                 alt="Joshua Hotama"
+                                 alt="Hyvaroo"
                                  class="w-full h-full object-cover"
                                  style="object-position: center bottom;">
                             <div class="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-dark/30 to-transparent"></div>
@@ -434,34 +432,6 @@
 
 </section>
 
-    <!-- Social float — desktop -->
-    <div class="hidden lg:flex flex-col gap-2.5 absolute left-5 top-1/2 -translate-y-1/2">
-        <a href="https://www.facebook.com/joshua.hotama/" target="_blank"
-           class="w-8 h-8 bg-white/5 border border-white/8 rounded-full flex items-center justify-center text-white/30 text-xs hover:bg-primary hover:text-white hover:border-primary transition-all">
-            <i class="bi bi-facebook"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/joshua-hotama-859823225/" target="_blank"
-           class="w-8 h-8 bg-white/5 border border-white/8 rounded-full flex items-center justify-center text-white/30 text-xs hover:bg-primary hover:text-white hover:border-primary transition-all">
-            <i class="bi bi-linkedin"></i>
-        </a>
-        <a href="https://www.instagram.com/joshuahotama/" target="_blank"
-           class="w-8 h-8 bg-white/5 border border-white/8 rounded-full flex items-center justify-center text-white/30 text-xs hover:bg-primary hover:text-white hover:border-primary transition-all">
-            <i class="bi bi-instagram"></i>
-        </a>
-        <a href="https://github.com/Joshot" target="_blank"
-           class="w-8 h-8 bg-white/5 border border-white/8 rounded-full flex items-center justify-center text-white/30 text-xs hover:bg-primary hover:text-white hover:border-primary transition-all">
-            <i class="bi bi-github"></i>
-        </a>
-    </div>
-
-    <!-- Scroll indicator -->
-    <div class="scroll-dn flex flex-col items-center gap-1 text-white/15 text-[9px]">
-        <span class="uppercase tracking-[0.2em]">Scroll</span>
-        <i class='bx bx-chevron-down text-base'></i>
-    </div>
-
-</section>
-
 <!-- ABOUT -->
 <section id="about" class="py-20 bg-white">
     <div class="max-w-6xl mx-auto px-6">
@@ -473,17 +443,17 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div class="relative max-w-xs mx-auto reveal">
                 <div class="absolute inset-0 translate-x-3 translate-y-3 bg-primary/20 rounded-2xl"></div>
-                <img src="assets/img/Profile.jpg" alt="Joshua Hotama" class="relative z-10 w-full rounded-2xl shadow-2xl">
+                <img src="assets/img/Profile.jpg" alt="Hyvaroo" class="relative z-10 w-full rounded-2xl shadow-2xl">
                 <div class="absolute -bottom-4 -right-4 z-20 bg-primary text-white px-5 py-3 rounded-xl shadow-lg shadow-primary/30 text-center">
                     <p class="text-xs font-semibold opacity-90">Open to Work</p>
                     <p class="text-[10px] opacity-70">Full-time / Freelance</p>
                 </div>
             </div>
             <div class="reveal">
-                <h2 class="text-2xl font-black text-dark mb-1">Joshua Hotama</h2>
-                <p class="text-primary font-medium text-sm mb-5">Full Stack Developer · Fresh Graduate</p>
-                <p class="text-gray-500 text-sm leading-relaxed mb-3">Hello! I'm a passionate Full Stack Developer from Indonesia with experience in both frontend and backend development gained through internships, university projects, and external builds.</p>
-                <p class="text-gray-500 text-sm leading-relaxed mb-6">My backend toolkit includes MySQL, PostgreSQL, and MongoDB. On the frontend I work with HTML, CSS, JavaScript, PHP, React, jQuery, Tailwind, and Bootstrap. I also design in Figma and I'm learning Japanese to pursue opportunities in Japan.</p>
+                <h2 class="text-2xl font-black text-dark mb-1">Hyvaroo</h2>
+                <p class="text-primary font-medium text-sm mb-5">Full Stack Developer</p>
+                <p class="text-gray-500 text-sm leading-relaxed mb-3">During my studies, I learned web programming, which includes web development, computer networks, internet technologies, network and internet security, programming language concepts, artificial intelligence algorithms, and human computer interaction concepts. I graduated with a GPA of 3.59.</p>
+                <p class="text-gray-500 text-sm leading-relaxed mb-6">My backend toolkit includes MySQL, PostgreSQL, and MongoDB. On the frontend I work with HTML, CSS, JavaScript, PHP, React, jQuery, Tailwind, and Bootstrap. I also design in Figma.</p>
                 <div class="grid grid-cols-2 gap-3 mb-7">
                     <div class="flex items-center gap-3">
                         <i class='bx bxs-map text-primary text-lg'></i>
@@ -665,7 +635,6 @@
 
     </div>
 </section>
-
 
 <!-- PROJECTS -->
 <section id="work" class="py-20 bg-white">
@@ -852,7 +821,6 @@
     </div>
 </section>
 
-
 <!-- CTA / CONTACT -->
 <section id="contact" class="py-24 bg-dark relative overflow-hidden">
 
@@ -967,9 +935,9 @@
             <!-- Brand -->
             <div class="text-center md:text-left">
                 <a href="#home" class="text-lg font-black tracking-tight">
-                    <span class="text-white">Joshua</span> <span class="text-primary">Hotama</span>
+                    <span class="text-white">Hyva</span><span style="color:#9ca3af">roo</span>
                 </a>
-                <p class="text-white/25 text-xs mt-1">Full Stack Developer · Tangerang, Indonesia</p>
+                <p class="text-white/25 text-xs mt-1">Tangerang, Indonesia</p>
             </div>
 
             <!-- Nav links -->
@@ -995,16 +963,14 @@
 
         <!-- Copyright -->
         <div class="flex flex-col sm:flex-row items-center justify-between gap-2 text-center">
-            <p class="text-white/20 text-[11px]">© 2026 <span class="text-white/40 font-semibold">Joshua Hotama</span>. All rights reserved.</p>
-            <p class="text-white/15 text-[11px]">Designed & Built by Joshua Hotama</p>
+            <p class="text-white/20 text-[11px]">© 2026 <span class="text-white/40 font-semibold">Hyvaroo</span>. All rights reserved.</p>
+            <p class="text-white/15 text-[11px]">Designed & Built by Hyvaroo</p>
         </div>
     </div>
 </footer>
 
 <script>
-    // ============================================
-    // ✅ NAVBAR SCROLL — IntersectionObserver
-    // ============================================
+    // NAVBAR SCROLL
     const header = document.getElementById('header');
     const homeSection = document.getElementById('home');
 
@@ -1022,21 +988,15 @@
     );
     navObserver.observe(homeSection);
 
-    // ============================================
     // LOADER
-    // ============================================
     window.addEventListener('load', () => {
         setTimeout(() => document.getElementById('loader').classList.add('hide'), 1800);
     });
 
-    // ============================================
     // LUCIDE ICONS
-    // ============================================
     lucide.createIcons();
 
-    // ============================================
     // BACK TO TOP
-    // ============================================
     const backTop = document.getElementById('backTop');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 400) {
@@ -1048,9 +1008,7 @@
         }
     });
 
-    // ============================================
     // REVEAL ON SCROLL
-    // ============================================
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(e => {
             if (e.isIntersecting) {
@@ -1061,9 +1019,7 @@
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // ============================================
-    // BOTTOM NAV — Active section highlight (Mobile Fixed)
-    // ============================================
+    // BOTTOM NAV — Active section highlight
     const sections = document.querySelectorAll('section[id]');
     const navItems = document.querySelectorAll('.nav-item[data-section]');
 
@@ -1073,7 +1029,6 @@
         if (active) active.classList.add('active');
     }
 
-    // Pakai scroll event — lebih reliable di semua device termasuk Android
     function onScroll() {
         const scrollY = window.scrollY;
         const headerH = document.getElementById('header')?.offsetHeight || 60;
@@ -1090,25 +1045,19 @@
     }
 
     window.addEventListener('scroll', onScroll, { passive: true });
-
-    // Jalankan sekali saat load
     onScroll();
 
-        // ============================================
-        // SKILL TABS
-        // ============================================
-        document.querySelectorAll('.skill-tab').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.skill-tab').forEach(b => b.classList.remove('active'));
-                document.querySelectorAll('.skill-panel').forEach(p => p.classList.add('hidden'));
-                btn.classList.add('active');
-                document.getElementById('tab-' + btn.dataset.tab).classList.remove('hidden');
-            });
+    // SKILL TABS
+    document.querySelectorAll('.skill-tab').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.skill-tab').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.skill-panel').forEach(p => p.classList.add('hidden'));
+            btn.classList.add('active');
+            document.getElementById('tab-' + btn.dataset.tab).classList.remove('hidden');
         });
+    });
 
-    // ============================================
-    // PROJECT FILTER + SCROLL TO SECTION
-    // ============================================
+    // PROJECT FILTER
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -1141,9 +1090,7 @@
         });
     });
 
-    // ============================================
     // WORK CARD — Mobile Tap to Show Overlay
-    // ============================================
     (function () {
         function isTouchDevice() {
             return window.matchMedia('(hover: none)').matches;
@@ -1151,12 +1098,10 @@
 
         function bindCardTap() {
             document.querySelectorAll('.work-card').forEach(card => {
-                // Hindari double-bind
                 if (card.dataset.tapBound) return;
                 card.dataset.tapBound = 'true';
 
                 card.addEventListener('click', function (e) {
-                    // Hanya aktif di touch device
                     if (!isTouchDevice()) return;
 
                     const overlay = card.querySelector('.work-overlay');
@@ -1164,14 +1109,12 @@
 
                     const isOpen = card.classList.contains('tapped');
 
-                    // Tutup semua card lain
                     document.querySelectorAll('.work-card.tapped').forEach(c => {
                         c.classList.remove('tapped');
                         c.querySelector('.work-overlay')?.classList.remove('overlay-visible');
                     });
 
                     if (!isOpen) {
-                        // Kalau tap di luar link, buka overlay
                         if (!e.target.closest('a')) {
                             e.preventDefault();
                             card.classList.add('tapped');
@@ -1182,10 +1125,8 @@
             });
         }
 
-        // Bind awal
         bindCardTap();
 
-        // Tutup overlay kalau tap di luar card
         document.addEventListener('click', function (e) {
             if (!e.target.closest('.work-card')) {
                 document.querySelectorAll('.work-card.tapped').forEach(c => {
@@ -1196,9 +1137,7 @@
         });
     })();
 
-    // ============================================
     // PROGRESS BARS
-    // ============================================
     const progObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -1211,9 +1150,7 @@
     }, { threshold: 0.3 });
     document.querySelectorAll('#tab-prog').forEach(el => progObserver.observe(el));
 
-    // ============================================
     // COUNTER ANIMATION
-    // ============================================
     const counterObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -1233,10 +1170,8 @@
     }, { threshold: 0.5 });
     document.querySelectorAll('#home').forEach(el => counterObserver.observe(el));
 
-    // ============================================
     // TYPEWRITER
-    // ============================================
-    const words = ['Full Stack Developer', 'UI/UX Enthusiast', 'Problem Solver', 'Fresh Graduate'];
+    const words = ['Full Stack Developer', 'UI/UX Enthusiast', 'Problem Solver', 'Open to Collaborate'];
     let wi = 0, ci = 0, deleting = false;
     const tw = document.getElementById('typewriter');
     function typeLoop() {
@@ -1252,10 +1187,8 @@
     }
     typeLoop();
 
-    // ============================================
     // CONTACT FORM
-    // ============================================
-    document.getElementById('contact-form').addEventListener('submit', function(e) {
+    document.getElementById('contact-form') && document.getElementById('contact-form').addEventListener('submit', function(e) {
         e.preventDefault();
         const btn = this.querySelector('button[type="submit"]');
         btn.innerHTML = '<i class="bx bx-check"></i> Message Sent!';
