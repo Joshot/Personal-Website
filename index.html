@@ -47,190 +47,88 @@
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-thumb { background: #4361ee; border-radius: 5px; }
 
-        /* Loader */
         #loader { position: fixed; inset: 0; background: #0d1b2a; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity .5s, visibility .5s; }
         #loader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
         .loader-fill { height: 100%; background: #4361ee; border-radius: 10px; animation: fillBar 1.8s ease forwards; }
 
-        /* Blob image */
         .blob-img { border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%; animation: blob 7s ease-in-out infinite alternate; }
 
-        /* Reveal */
         .reveal { opacity: 0; transform: translateY(28px); transition: opacity .55s ease, transform .55s ease; }
         .reveal.vis { opacity: 1; transform: translateY(0); }
 
-        /* Skill card hover overlay */
+        /* Skill card hover */
         .skill-card::before { content: ''; position: absolute; inset: 0; background: #4361ee; opacity: 0; transition: opacity .25s; border-radius: 14px; }
         .skill-card:hover::before { opacity: 1; }
         .skill-card:hover .skill-icon, .skill-card:hover .skill-name { color: #fff !important; }
+        .skill-card:hover .skill-img { filter: brightness(0) invert(1); }
 
-        /* Work card overlay */
         .work-overlay { opacity: 0; transition: opacity .3s; }
         .work-card:hover .work-overlay { opacity: 1; }
         .work-card:hover .work-img { transform: scale(1.06); }
 
-        /* Progress fill trigger */
         .prog-fill { height: 100%; background: #4361ee; border-radius: 10px; width: 0; transition: width 1.2s ease; }
-
-        /* Scroll down */
         .scroll-dn { position: absolute; bottom: 1.8rem; left: 50%; animation: bounce2 2s infinite; }
 
-        /* Tab active */
         .skill-tab.active { background: #4361ee; color: #fff; border-color: #4361ee; }
         .filter-btn.active { background: #4361ee; color: #fff; border-color: #4361ee; }
 
-        /* ============================================
-           NAVBAR — Transparent / Scrolled States
-           ============================================ */
         #header {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%;
-            z-index: 40;
-            transition: background 0.3s ease,
-                        backdrop-filter 0.3s ease,
-                        -webkit-backdrop-filter 0.3s ease,
-                        border-color 0.3s ease,
-                        box-shadow 0.3s ease;
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 40;
+            transition: background 0.3s ease, backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
-
-        /* STATE 1: Di HOME — full transparan */
         #header.navbar-transparent {
-            background: transparent;
-            backdrop-filter: none;
-            -webkit-backdrop-filter: none;
-            border-bottom: 1px solid transparent;
-            box-shadow: none;
+            background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none;
+            border-bottom: 1px solid transparent; box-shadow: none;
         }
-
-        /* STATE 2: Setelah scroll — glassmorphism solid */
         #header.navbar-scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.07);
-            box-shadow: 0 1px 0 rgba(255,255,255,0.9) inset,
-                        0 4px 20px rgba(0, 0, 0, 0.08);
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(0,0,0,0.07);
+            box-shadow: 0 1px 0 rgba(255,255,255,0.9) inset, 0 4px 20px rgba(0,0,0,0.08);
         }
-
-        /* Brand warna saat transparan (di HOME) */
         #header.navbar-transparent .brand-joshua { color: #FFFFFF; }
         #header.navbar-transparent .brand-hotama { color: #E5E5E5; }
-
-        /* Brand warna saat scrolled */
         #header.navbar-scrolled .brand-joshua { color: #0d1b2a; }
         #header.navbar-scrolled .brand-hotama { color: #4361ee; }
-
-        /* Mobile: sedikit ada tint gelap agar tetap readable */
         @media (max-width: 768px) {
-            #header.navbar-transparent {
-                background: rgba(0, 0, 0, 0.10);
-            }
+            #header.navbar-transparent { background: rgba(0,0,0,0.10); }
         }
 
-        /* ============================================
-           iPhone-style Bottom Nav (Glassmorphism Light)
-           ============================================ */
         #bottom-nav {
-            position: fixed;
-            bottom: 24px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 50;
-            animation: slideUp .5s ease both;
-            background: rgba(255, 255, 255, 0.72);
-            backdrop-filter: blur(28px) saturate(200%);
-            -webkit-backdrop-filter: blur(28px) saturate(200%);
-            border: 1px solid rgba(255, 255, 255, 0.9);
-            outline: 1px solid rgba(0, 0, 0, 0.07);
+            position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+            z-index: 50; animation: slideUp .5s ease both;
+            background: rgba(255,255,255,0.72);
+            backdrop-filter: blur(28px) saturate(200%); -webkit-backdrop-filter: blur(28px) saturate(200%);
+            border: 1px solid rgba(255,255,255,0.9); outline: 1px solid rgba(0,0,0,0.07);
             border-radius: 9999px;
-            box-shadow:
-                0 2px 0px rgba(255,255,255,0.95) inset,
-                0 -1px 0px rgba(0,0,0,0.06) inset,
-                0 8px 32px rgba(0, 0, 0, 0.12),
-                0 2px 8px rgba(0, 0, 0, 0.08),
-                0 0 0 1px rgba(255,255,255,0.6);
-            padding: 8px 16px;
-            display: flex;
-            align-items: center;
-            gap: 2px;
+            box-shadow: 0 2px 0px rgba(255,255,255,0.95) inset, 0 -1px 0px rgba(0,0,0,0.06) inset,
+                        0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08), 0 0 0 1px rgba(255,255,255,0.6);
+            padding: 8px 16px; display: flex; align-items: center; gap: 2px;
         }
-
         .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3px;
-            padding: 8px 16px;
-            border-radius: 9999px;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            color: rgba(13, 27, 42, 0.45);
-            text-decoration: none;
-            white-space: nowrap;
-            position: relative;
-            font-weight: 600;
+            display: flex; flex-direction: column; align-items: center; gap: 3px;
+            padding: 8px 16px; border-radius: 9999px; cursor: pointer;
+            transition: all 0.25s ease; color: rgba(13,27,42,0.45);
+            text-decoration: none; white-space: nowrap; position: relative; font-weight: 600;
         }
-
-        .nav-item:hover {
-            background: rgba(67, 97, 238, 0.09);
-            color: #4361ee;
-        }
-
-        .nav-item.active {
-            background: #4361ee;
-            color: #fff;
-            box-shadow: 0 4px 16px rgba(67, 97, 238, 0.45);
-        }
-
-        .nav-item svg {
-            width: 20px;
-            height: 20px;
-            stroke-width: 2;
-        }
-
-        .nav-label {
-            font-size: 10px;
-            font-weight: 600;
-            font-family: 'Poppins', sans-serif;
-            letter-spacing: 0.02em;
-        }
-
-        /* Mobile: hide labels */
+        .nav-item:hover { background: rgba(67,97,238,0.09); color: #4361ee; }
+        .nav-item.active { background: #4361ee; color: #fff; box-shadow: 0 4px 16px rgba(67,97,238,0.45); }
+        .nav-item svg { width: 20px; height: 20px; stroke-width: 2; }
+        .nav-label { font-size: 10px; font-weight: 600; font-family: 'Poppins', sans-serif; letter-spacing: 0.02em; }
         @media (max-width: 640px) {
             .nav-label { display: none; }
             .nav-item { padding: 8px 12px; }
             #bottom-nav { padding: 8px 12px; gap: 2px; }
         }
-
-        /* Mobile tap overlay */
         @media (hover: none) {
-            .work-overlay {
-                opacity: 0;
-                transition: opacity 0.3s ease;
-                pointer-events: none;
-            }
-            .work-overlay.overlay-visible {
-                opacity: 1;
-                pointer-events: auto;
-            }
-            /* Kasih hint visual bahwa card bisa di-tap */
+            .work-overlay { opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
+            .work-overlay.overlay-visible { opacity: 1; pointer-events: auto; }
             .work-card::after {
-                content: '';
-                position: absolute;
-                inset: 0;
-                border-radius: 1rem;
-                border: 2px solid transparent;
-                transition: border-color 0.2s ease;
-                pointer-events: none;
+                content: ''; position: absolute; inset: 0; border-radius: 1rem;
+                border: 2px solid transparent; transition: border-color 0.2s ease; pointer-events: none;
             }
-            .work-card.tapped::after {
-                border-color: #4361ee44;
-            }
-            /* Cursor jadi pointer di mobile */
-            .work-card {
-                cursor: pointer;
-            }
+            .work-card.tapped::after { border-color: #4361ee44; }
+            .work-card { cursor: pointer; }
         }
     </style>
 </head>
@@ -238,7 +136,7 @@
 
 <!-- LOADER -->
 <div id="loader">
-    <p class="text-white text-4xl font-black tracking-widest animate-fadeUp">J<span class="text-primary">H</span></p>
+    <p class="text-white text-4xl font-black tracking-widest animate-fadeUp">Hyva<span class="text-primary">roo</span></p>
     <div class="w-44 h-[3px] bg-white/10 rounded-full mt-5 overflow-hidden animate-fadeUp">
         <div class="loader-fill"></div>
     </div>
@@ -249,16 +147,16 @@
     <i class='bx bx-up-arrow-alt'></i>
 </a>
 
-<!-- ✅ HEADER — Sudah dimodifikasi dengan navbar-transparent/scrolled + brand split warna -->
+<!-- HEADER -->
 <header id="header" class="navbar-transparent">
     <nav class="max-w-6xl mx-auto h-[60px] flex justify-center items-center px-6">
         <a href="#home" class="text-xl font-black tracking-tight">
-            <span class="brand-joshua">Joshua</span> <span class="brand-hotama">Hotama</span>
+            <span class="brand-joshua">Hyva</span><span class="brand-hotama">roo</span>
         </a>
     </nav>
 </header>
 
-<!-- BOTTOM FLOATING NAV (iPhone style) -->
+<!-- BOTTOM FLOATING NAV -->
 <nav id="bottom-nav">
     <a href="#home" class="nav-item active" data-section="home">
         <i data-lucide="house" class="lucide-icon"></i>
@@ -288,59 +186,43 @@
 
 <!-- HOME -->
 <section id="home" class="min-h-screen bg-dark flex items-center pt-[60px] relative overflow-hidden">
-
-    <!-- Background -->
     <div class="absolute top-[-100px] right-[-100px] w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] pointer-events-none"></div>
     <div class="absolute bottom-[-80px] left-[-80px] w-[350px] h-[350px] bg-indigo-900/30 rounded-full blur-[100px] pointer-events-none"></div>
 
     <div class="max-w-6xl mx-auto px-6 py-20 w-full relative">
         <div class="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-12 lg:gap-20 items-center">
 
-            <!-- LEFT: Text -->
+            <!-- LEFT -->
             <div class="order-2 lg:order-1">
-
-                <!-- Status badge -->
                 <div class="inline-flex items-center gap-2 mb-7">
                     <span class="flex items-center gap-1.5 bg-green-500/10 border border-green-500/20 text-green-400 text-[11px] font-semibold px-3 py-1 rounded-full">
                         <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span>
                         Available for Opportunities
                     </span>
                 </div>
-
-                <!-- Heading -->
                 <h1 class="font-black text-white leading-[1.05] mb-6">
                     <span class="block text-white/40 text-lg lg:text-xl font-semibold tracking-wide mb-2">Hi there, I'm</span>
                     <span class="block text-5xl lg:text-7xl text-white">Joshua</span>
                     <span class="block text-5xl lg:text-7xl text-primary">Hotama.</span>
                 </h1>
-
-                <!-- Typewriter -->
                 <div class="flex items-center gap-3 mb-5">
                     <div class="w-8 h-px bg-primary/60"></div>
                     <p class="text-white/60 text-sm lg:text-base font-medium">
                         <span id="typewriter" class="border-r-2 border-primary pr-1"></span>
                     </p>
                 </div>
-
-                <!-- Desc -->
                 <p class="text-white/35 text-sm leading-[1.9] mb-9 max-w-[420px]">
                     Fresh graduate who enjoys turning complex problems into clean,
                     functional solutions — from pixel-perfect interfaces to solid backend systems.
                 </p>
-
-                <!-- CTA -->
                 <div class="flex flex-wrap gap-3 mb-12">
-                    <a href="#work"
-                       class="bg-primary text-white px-6 py-2.5 rounded-xl font-semibold text-sm flex items-center gap-2 shadow-lg shadow-primary/25 hover:bg-primary/90 hover:-translate-y-0.5 transition-all">
+                    <a href="#work" class="bg-primary text-white px-6 py-2.5 rounded-xl font-semibold text-sm flex items-center gap-2 shadow-lg shadow-primary/25 hover:bg-primary/90 hover:-translate-y-0.5 transition-all">
                         <i class='bx bx-grid-alt text-base'></i> See My Work
                     </a>
-                    <a href="#contact"
-                       class="text-white/70 px-6 py-2.5 rounded-xl font-semibold text-sm flex items-center gap-2 border border-white/10 hover:border-white/30 hover:text-white hover:-translate-y-0.5 transition-all">
+                    <a href="#contact" class="text-white/70 px-6 py-2.5 rounded-xl font-semibold text-sm flex items-center gap-2 border border-white/10 hover:border-white/30 hover:text-white hover:-translate-y-0.5 transition-all">
                         <i class='bx bx-mail-send text-base'></i> Get in Touch
                     </a>
                 </div>
-
-                <!-- Stats -->
                 <div class="flex items-center gap-8">
                     <div>
                         <p class="text-3xl font-black text-white" data-count="20">0+</p>
@@ -363,21 +245,11 @@
             <div class="order-1 lg:order-2 flex justify-center lg:justify-end">
                 <div class="relative">
                     <div class="relative w-[260px] lg:w-[340px]">
-
-                        <!-- Glow -->
                         <div class="absolute -inset-3 bg-primary/15 rounded-[2rem] blur-2xl"></div>
-
-                        <!-- Frame -->
-                        <div class="relative rounded-[1.75rem] overflow-hidden shadow-2xl shadow-black/60"
-                             style="aspect-ratio: 3/4;">
-                            <img src="assets/img/pofil.jpg"
-                                 alt="Joshua Hotama"
-                                 class="w-full h-full object-cover"
-                                 style="object-position: center bottom;">
+                        <div class="relative rounded-[1.75rem] overflow-hidden shadow-2xl shadow-black/60" style="aspect-ratio: 3/4;">
+                            <img src="assets/img/pofil.jpg" alt="Joshua Hotama" class="w-full h-full object-cover" style="object-position: center bottom;">
                             <div class="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-dark/30 to-transparent"></div>
                         </div>
-
-                        <!-- Floating card: University -->
                         <div class="absolute -bottom-5 -right-5 bg-dark/80 backdrop-blur-xl border border-white/10 rounded-2xl px-4 py-3 shadow-2xl">
                             <div class="flex items-center gap-2.5">
                                 <div class="w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center">
@@ -389,8 +261,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Floating card: status -->
                         <div class="absolute -top-5 -left-5 bg-dark/80 backdrop-blur-xl border border-white/10 rounded-2xl px-4 py-3 shadow-2xl">
                             <div class="flex items-center gap-2.5">
                                 <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
@@ -398,68 +268,24 @@
                             </div>
                             <p class="text-white/35 text-[10px] mt-0.5 pl-4">Full-time · Freelance</p>
                         </div>
-
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
-    <!-- Social float — desktop -->
+    <!-- Social float desktop -->
     <div class="hidden lg:flex flex-col gap-2.5 absolute left-5 top-1/2 -translate-y-1/2">
-        <a href="https://www.facebook.com/joshua.hotama/" target="_blank"
-           class="w-8 h-8 bg-white/5 border border-white/8 rounded-full flex items-center justify-center text-white/30 text-xs hover:bg-primary hover:text-white hover:border-primary transition-all">
-            <i class="bi bi-facebook"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/joshua-hotama-859823225/" target="_blank"
-           class="w-8 h-8 bg-white/5 border border-white/8 rounded-full flex items-center justify-center text-white/30 text-xs hover:bg-primary hover:text-white hover:border-primary transition-all">
-            <i class="bi bi-linkedin"></i>
-        </a>
-        <a href="https://www.instagram.com/joshuahotama/" target="_blank"
-           class="w-8 h-8 bg-white/5 border border-white/8 rounded-full flex items-center justify-center text-white/30 text-xs hover:bg-primary hover:text-white hover:border-primary transition-all">
-            <i class="bi bi-instagram"></i>
-        </a>
-        <a href="https://github.com/Joshot" target="_blank"
-           class="w-8 h-8 bg-white/5 border border-white/8 rounded-full flex items-center justify-center text-white/30 text-xs hover:bg-primary hover:text-white hover:border-primary transition-all">
-            <i class="bi bi-github"></i>
-        </a>
+        <a href="https://www.facebook.com/joshua.hotama/" target="_blank" class="w-8 h-8 bg-white/5 border border-white/8 rounded-full flex items-center justify-center text-white/30 text-xs hover:bg-primary hover:text-white hover:border-primary transition-all"><i class="bi bi-facebook"></i></a>
+        <a href="https://www.linkedin.com/in/joshua-hotama-859823225/" target="_blank" class="w-8 h-8 bg-white/5 border border-white/8 rounded-full flex items-center justify-center text-white/30 text-xs hover:bg-primary hover:text-white hover:border-primary transition-all"><i class="bi bi-linkedin"></i></a>
+        <a href="https://www.instagram.com/joshuahotama/" target="_blank" class="w-8 h-8 bg-white/5 border border-white/8 rounded-full flex items-center justify-center text-white/30 text-xs hover:bg-primary hover:text-white hover:border-primary transition-all"><i class="bi bi-instagram"></i></a>
+        <a href="https://github.com/Joshot" target="_blank" class="w-8 h-8 bg-white/5 border border-white/8 rounded-full flex items-center justify-center text-white/30 text-xs hover:bg-primary hover:text-white hover:border-primary transition-all"><i class="bi bi-github"></i></a>
     </div>
 
-    <!-- Scroll indicator -->
     <div class="scroll-dn flex flex-col items-center gap-1 text-white/15 text-[9px]">
         <span class="uppercase tracking-[0.2em]">Scroll</span>
         <i class='bx bx-chevron-down text-base'></i>
     </div>
-
-</section>
-
-    <!-- Social float — desktop -->
-    <div class="hidden lg:flex flex-col gap-2.5 absolute left-5 top-1/2 -translate-y-1/2">
-        <a href="https://www.facebook.com/joshua.hotama/" target="_blank"
-           class="w-8 h-8 bg-white/5 border border-white/8 rounded-full flex items-center justify-center text-white/30 text-xs hover:bg-primary hover:text-white hover:border-primary transition-all">
-            <i class="bi bi-facebook"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/joshua-hotama-859823225/" target="_blank"
-           class="w-8 h-8 bg-white/5 border border-white/8 rounded-full flex items-center justify-center text-white/30 text-xs hover:bg-primary hover:text-white hover:border-primary transition-all">
-            <i class="bi bi-linkedin"></i>
-        </a>
-        <a href="https://www.instagram.com/joshuahotama/" target="_blank"
-           class="w-8 h-8 bg-white/5 border border-white/8 rounded-full flex items-center justify-center text-white/30 text-xs hover:bg-primary hover:text-white hover:border-primary transition-all">
-            <i class="bi bi-instagram"></i>
-        </a>
-        <a href="https://github.com/Joshot" target="_blank"
-           class="w-8 h-8 bg-white/5 border border-white/8 rounded-full flex items-center justify-center text-white/30 text-xs hover:bg-primary hover:text-white hover:border-primary transition-all">
-            <i class="bi bi-github"></i>
-        </a>
-    </div>
-
-    <!-- Scroll indicator -->
-    <div class="scroll-dn flex flex-col items-center gap-1 text-white/15 text-[9px]">
-        <span class="uppercase tracking-[0.2em]">Scroll</span>
-        <i class='bx bx-chevron-down text-base'></i>
-    </div>
-
 </section>
 
 <!-- ABOUT -->
@@ -483,7 +309,7 @@
                 <h2 class="text-2xl font-black text-dark mb-1">Joshua Hotama</h2>
                 <p class="text-primary font-medium text-sm mb-5">Full Stack Developer · Fresh Graduate</p>
                 <p class="text-gray-500 text-sm leading-relaxed mb-3">Hello! I'm a passionate Full Stack Developer from Indonesia with experience in both frontend and backend development gained through internships, university projects, and external builds.</p>
-                <p class="text-gray-500 text-sm leading-relaxed mb-6">My backend toolkit includes MySQL, PostgreSQL, and MongoDB. On the frontend I work with HTML, CSS, JavaScript, PHP, React, jQuery, Tailwind, and Bootstrap. I also design in Figma and I'm learning Japanese to pursue opportunities in Japan.</p>
+                <p class="text-gray-500 text-sm leading-relaxed mb-6">My backend toolkit includes MySQL, PostgreSQL, and MongoDB. On the frontend I work with HTML, CSS, JavaScript, PHP, React, Next.js, jQuery, Tailwind, and Bootstrap. I also design in Figma and I'm learning Japanese to pursue opportunities in Japan.</p>
                 <div class="grid grid-cols-2 gap-3 mb-7">
                     <div class="flex items-center gap-3">
                         <i class='bx bxs-map text-primary text-lg'></i>
@@ -537,135 +363,215 @@
             </button>
         </div>
 
-        <!-- Technical -->
+        <!-- TECHNICAL -->
         <div class="skill-panel" id="tab-tech">
             <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 reveal">
+
                 <div class="skill-card relative bg-white rounded-2xl p-3 text-center shadow-sm cursor-default transition-all hover:-translate-y-1 overflow-hidden">
-                    <i class='bx bxl-html5 skill-icon text-3xl text-primary mb-1 relative z-10 block transition-colors'></i>
+                    <div class="flex justify-center mb-1 relative z-10 h-8 items-center">
+                        <img src="https://cdn.simpleicons.org/html5/E34F26" alt="HTML5" width="28" height="28" loading="lazy" class="skill-img transition-all">
+                    </div>
                     <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">HTML5</span>
                 </div>
+
                 <div class="skill-card relative bg-white rounded-2xl p-3 text-center shadow-sm cursor-default transition-all hover:-translate-y-1 overflow-hidden">
-                    <i class='bx bxl-css3 skill-icon text-3xl text-primary mb-1 relative z-10 block transition-colors'></i>
+                    <div class="flex justify-center mb-1 relative z-10 h-8 items-center">
+                        <img src="https://cdn.simpleicons.org/css3/1572B6" alt="CSS3" width="28" height="28" loading="lazy" class="skill-img transition-all">
+                    </div>
                     <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">CSS3</span>
                 </div>
+
                 <div class="skill-card relative bg-white rounded-2xl p-3 text-center shadow-sm cursor-default transition-all hover:-translate-y-1 overflow-hidden">
-                    <i class='bx bxl-javascript skill-icon text-3xl text-primary mb-1 relative z-10 block transition-colors'></i>
+                    <div class="flex justify-center mb-1 relative z-10 h-8 items-center">
+                        <img src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="JavaScript" width="28" height="28" loading="lazy" class="skill-img transition-all">
+                    </div>
                     <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">JavaScript</span>
                 </div>
+
                 <div class="skill-card relative bg-white rounded-2xl p-3 text-center shadow-sm cursor-default transition-all hover:-translate-y-1 overflow-hidden">
-                    <i class='bx bxl-php skill-icon text-3xl text-primary mb-1 relative z-10 block transition-colors'></i>
+                    <div class="flex justify-center mb-1 relative z-10 h-8 items-center">
+                        <img src="https://cdn.simpleicons.org/php/777BB4" alt="PHP" width="28" height="28" loading="lazy" class="skill-img transition-all">
+                    </div>
                     <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">PHP</span>
                 </div>
+
                 <div class="skill-card relative bg-white rounded-2xl p-3 text-center shadow-sm cursor-default transition-all hover:-translate-y-1 overflow-hidden">
-                    <i class='bx bxl-react skill-icon text-3xl text-primary mb-1 relative z-10 block transition-colors'></i>
+                    <div class="flex justify-center mb-1 relative z-10 h-8 items-center">
+                        <img src="https://cdn.simpleicons.org/react/61DAFB" alt="React" width="28" height="28" loading="lazy" class="skill-img transition-all">
+                    </div>
                     <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">React</span>
                 </div>
+
                 <div class="skill-card relative bg-white rounded-2xl p-3 text-center shadow-sm cursor-default transition-all hover:-translate-y-1 overflow-hidden">
-                    <i class='bx bxl-jquery skill-icon text-3xl text-primary mb-1 relative z-10 block transition-colors'></i>
+                    <div class="flex justify-center mb-1 relative z-10 h-8 items-center">
+                        <img src="https://cdn.simpleicons.org/nextdotjs/111827" alt="Next.js" width="28" height="28" loading="lazy" class="skill-img transition-all">
+                    </div>
+                    <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">Next.js</span>
+                </div>
+
+                <div class="skill-card relative bg-white rounded-2xl p-3 text-center shadow-sm cursor-default transition-all hover:-translate-y-1 overflow-hidden">
+                    <div class="flex justify-center mb-1 relative z-10 h-8 items-center">
+                        <img src="https://cdn.simpleicons.org/laravel/FF2D20" alt="Laravel" width="28" height="28" loading="lazy" class="skill-img transition-all">
+                    </div>
+                    <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">Laravel</span>
+                </div>
+
+                <div class="skill-card relative bg-white rounded-2xl p-3 text-center shadow-sm cursor-default transition-all hover:-translate-y-1 overflow-hidden">
+                    <div class="flex justify-center mb-1 relative z-10 h-8 items-center">
+                        <img src="https://cdn.simpleicons.org/jquery/0769AD" alt="jQuery" width="28" height="28" loading="lazy" class="skill-img transition-all">
+                    </div>
                     <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">jQuery</span>
                 </div>
+
                 <div class="skill-card relative bg-white rounded-2xl p-3 text-center shadow-sm cursor-default transition-all hover:-translate-y-1 overflow-hidden">
-                    <i class='bx bx-data skill-icon text-3xl text-primary mb-1 relative z-10 block transition-colors'></i>
+                    <div class="flex justify-center mb-1 relative z-10 h-8 items-center">
+                        <img src="https://cdn.simpleicons.org/mysql/4479A1" alt="MySQL" width="28" height="28" loading="lazy" class="skill-img transition-all">
+                    </div>
                     <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">MySQL</span>
                 </div>
+
                 <div class="skill-card relative bg-white rounded-2xl p-3 text-center shadow-sm cursor-default transition-all hover:-translate-y-1 overflow-hidden">
-                    <i class='bx bx-data skill-icon text-3xl text-primary mb-1 relative z-10 block transition-colors'></i>
+                    <div class="flex justify-center mb-1 relative z-10 h-8 items-center">
+                        <img src="https://cdn.simpleicons.org/mongodb/47A248" alt="MongoDB" width="28" height="28" loading="lazy" class="skill-img transition-all">
+                    </div>
                     <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">MongoDB</span>
                 </div>
+
                 <div class="skill-card relative bg-white rounded-2xl p-3 text-center shadow-sm cursor-default transition-all hover:-translate-y-1 overflow-hidden">
-                    <i class='bx bxl-java skill-icon text-3xl text-primary mb-1 relative z-10 block transition-colors'></i>
-                    <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">Java</span>
-                </div>
-                <div class="skill-card relative bg-white rounded-2xl p-3 text-center shadow-sm cursor-default transition-all hover:-translate-y-1 overflow-hidden">
-                    <i class='bx bxl-python skill-icon text-3xl text-primary mb-1 relative z-10 block transition-colors'></i>
+                    <div class="flex justify-center mb-1 relative z-10 h-8 items-center">
+                        <img src="https://cdn.simpleicons.org/python/3776AB" alt="Python" width="28" height="28" loading="lazy" class="skill-img transition-all">
+                    </div>
                     <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">Python</span>
                 </div>
+
                 <div class="skill-card relative bg-white rounded-2xl p-3 text-center shadow-sm cursor-default transition-all hover:-translate-y-1 overflow-hidden">
-                    <i class='bx bx-code-alt skill-icon text-3xl text-primary mb-1 relative z-10 block transition-colors'></i>
+                    <div class="flex justify-center mb-1 relative z-10 h-8 items-center">
+                        <img src="https://cdn.simpleicons.org/openjdk/ED8B00" alt="Java" width="28" height="28" loading="lazy" class="skill-img transition-all">
+                    </div>
+                    <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">Java</span>
+                </div>
+
+                <div class="skill-card relative bg-white rounded-2xl p-3 text-center shadow-sm cursor-default transition-all hover:-translate-y-1 overflow-hidden">
+                    <div class="flex justify-center mb-1 relative z-10 h-8 items-center">
+                        <img src="https://cdn.simpleicons.org/csharp/512BD4" alt="C#" width="28" height="28" loading="lazy" class="skill-img transition-all">
+                    </div>
                     <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">C#</span>
                 </div>
+
                 <div class="skill-card relative bg-white rounded-2xl p-3 text-center shadow-sm cursor-default transition-all hover:-translate-y-1 overflow-hidden">
-                    <i class='bx bxl-android skill-icon text-3xl text-primary mb-1 relative z-10 block transition-colors'></i>
+                    <div class="flex justify-center mb-1 relative z-10 h-8 items-center">
+                        <img src="https://cdn.simpleicons.org/kotlin/7F52FF" alt="Kotlin" width="28" height="28" loading="lazy" class="skill-img transition-all">
+                    </div>
                     <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">Kotlin</span>
                 </div>
+
                 <div class="skill-card relative bg-white rounded-2xl p-3 text-center shadow-sm cursor-default transition-all hover:-translate-y-1 overflow-hidden">
-                    <i class='bx bx-code-alt skill-icon text-3xl text-primary mb-1 relative z-10 block transition-colors'></i>
+                    <div class="flex justify-center mb-1 relative z-10 h-8 items-center">
+                        <img src="https://cdn.simpleicons.org/dotnet/512BD4" alt=".NET" width="28" height="28" loading="lazy" class="skill-img transition-all">
+                    </div>
                     <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">.NET</span>
                 </div>
+
                 <div class="skill-card relative bg-white rounded-2xl p-3 text-center shadow-sm cursor-default transition-all hover:-translate-y-1 overflow-hidden">
-                    <i class='bx bxl-microsoft skill-icon text-3xl text-primary mb-1 relative z-10 block transition-colors'></i>
+                    <div class="flex justify-center mb-1 relative z-10 h-8 items-center">
+                        <img src="https://cdn.simpleicons.org/microsoftoffice/D83B01" alt="MS Office" width="28" height="28" loading="lazy" class="skill-img transition-all">
+                    </div>
                     <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">MS Office</span>
                 </div>
+
                 <div class="skill-card relative bg-white rounded-2xl p-3 text-center shadow-sm cursor-default transition-all hover:-translate-y-1 overflow-hidden">
-                    <i class='bx bx-sitemap skill-icon text-3xl text-primary mb-1 relative z-10 block transition-colors'></i>
-                    <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">ERP</span>
+                    <div class="flex justify-center mb-1 relative z-10 h-8 items-center">
+                        <img src="https://cdn.simpleicons.org/git/F05032" alt="Git" width="28" height="28" loading="lazy" class="skill-img transition-all">
+                    </div>
+                    <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">Git</span>
                 </div>
+
                 <div class="skill-card relative bg-white rounded-2xl p-3 text-center shadow-sm cursor-default transition-all hover:-translate-y-1 overflow-hidden">
-                    <i class='bx bxl-react skill-icon text-3xl text-primary mb-1 relative z-10 block transition-colors'></i>
+                    <div class="flex justify-center mb-1 relative z-10 h-8 items-center">
+                        <img src="https://cdn.simpleicons.org/react/61DAFB" alt="MERN" width="28" height="28" loading="lazy" class="skill-img transition-all">
+                    </div>
                     <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">MERN</span>
                 </div>
+
             </div>
         </div>
 
-        <!-- Design -->
+        <!-- DESIGN -->
         <div class="skill-panel hidden" id="tab-design">
             <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 reveal">
+
                 <div class="skill-card relative bg-white rounded-2xl p-3 text-center shadow-sm cursor-default transition-all hover:-translate-y-1 overflow-hidden">
-                    <i class='bx bxl-figma skill-icon text-3xl text-primary mb-1 relative z-10 block transition-colors'></i>
+                    <div class="flex justify-center mb-1 relative z-10 h-8 items-center">
+                        <img src="https://cdn.simpleicons.org/figma/F24E1E" alt="Figma" width="28" height="28" loading="lazy" class="skill-img transition-all">
+                    </div>
                     <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">Figma</span>
                 </div>
+
                 <div class="skill-card relative bg-white rounded-2xl p-3 text-center shadow-sm cursor-default transition-all hover:-translate-y-1 overflow-hidden">
-                    <i class='bx bxs-paint skill-icon text-3xl text-primary mb-1 relative z-10 block transition-colors'></i>
+                    <div class="flex justify-center mb-1 relative z-10 h-8 items-center">
+                        <img src="https://cdn.simpleicons.org/canva/00C4CC" alt="Canva" width="28" height="28" loading="lazy" class="skill-img transition-all">
+                    </div>
                     <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">Canva</span>
                 </div>
+
                 <div class="skill-card relative bg-white rounded-2xl p-3 text-center shadow-sm cursor-default transition-all hover:-translate-y-1 overflow-hidden">
-                    <i class='bx bxl-tailwind-css skill-icon text-3xl text-primary mb-1 relative z-10 block transition-colors'></i>
+                    <div class="flex justify-center mb-1 relative z-10 h-8 items-center">
+                        <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" alt="Tailwind" width="28" height="28" loading="lazy" class="skill-img transition-all">
+                    </div>
                     <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">Tailwind</span>
                 </div>
+
                 <div class="skill-card relative bg-white rounded-2xl p-3 text-center shadow-sm cursor-default transition-all hover:-translate-y-1 overflow-hidden">
-                    <i class='bx bxl-bootstrap skill-icon text-3xl text-primary mb-1 relative z-10 block transition-colors'></i>
+                    <div class="flex justify-center mb-1 relative z-10 h-8 items-center">
+                        <img src="https://cdn.simpleicons.org/bootstrap/7952B3" alt="Bootstrap" width="28" height="28" loading="lazy" class="skill-img transition-all">
+                    </div>
                     <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">Bootstrap</span>
                 </div>
+
             </div>
         </div>
 
-        <!-- Soft Skills -->
+        <!-- SOFT SKILLS -->
         <div class="skill-panel hidden" id="tab-soft">
             <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 reveal">
+
                 <div class="skill-card relative bg-white rounded-2xl p-3 text-center shadow-sm cursor-default transition-all hover:-translate-y-1 overflow-hidden">
                     <i class='bx bx-crown skill-icon text-3xl text-primary mb-1 relative z-10 block transition-colors'></i>
                     <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">Leadership</span>
                 </div>
+
                 <div class="skill-card relative bg-white rounded-2xl p-3 text-center shadow-sm cursor-default transition-all hover:-translate-y-1 overflow-hidden">
                     <i class='bx bx-conversation skill-icon text-3xl text-primary mb-1 relative z-10 block transition-colors'></i>
                     <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">Communication</span>
                 </div>
+
                 <div class="skill-card relative bg-white rounded-2xl p-3 text-center shadow-sm cursor-default transition-all hover:-translate-y-1 overflow-hidden">
-                    <span class="skill-icon text-3xl text-primary mb-1 relative z-10 flex justify-center transition-colors">
-                        <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L12.21 19s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.139c-.093-.514.234-.887.748-.933z"/>
-                        </svg>
-                    </span>
+                    <div class="flex justify-center mb-1 relative z-10 h-8 items-center">
+                        <img src="https://cdn.simpleicons.org/notion/111827" alt="Notion" width="28" height="28" loading="lazy" class="skill-img transition-all">
+                    </div>
                     <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">Notion</span>
                 </div>
+
                 <div class="skill-card relative bg-white rounded-2xl p-3 text-center shadow-sm cursor-default transition-all hover:-translate-y-1 overflow-hidden">
                     <i class='bx bx-bulb skill-icon text-3xl text-primary mb-1 relative z-10 block transition-colors'></i>
                     <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">Problem Solving</span>
                 </div>
+
                 <div class="skill-card relative bg-white rounded-2xl p-3 text-center shadow-sm cursor-default transition-all hover:-translate-y-1 overflow-hidden">
                     <i class='bx bx-time-five skill-icon text-3xl text-primary mb-1 relative z-10 block transition-colors'></i>
                     <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">Time Mgmt</span>
                 </div>
+
                 <div class="skill-card relative bg-white rounded-2xl p-3 text-center shadow-sm cursor-default transition-all hover:-translate-y-1 overflow-hidden">
                     <i class='bx bx-group skill-icon text-3xl text-primary mb-1 relative z-10 block transition-colors'></i>
                     <span class="skill-name text-[10px] font-bold text-dark uppercase tracking-wide relative z-10 transition-colors">Teamwork</span>
                 </div>
+
             </div>
         </div>
 
     </div>
 </section>
-
 
 <!-- PROJECTS -->
 <section id="work" class="py-20 bg-white">
@@ -675,14 +581,12 @@
             <h2 class="text-3xl lg:text-4xl font-black text-dark mt-3 mb-3">My Projects</h2>
             <div class="w-12 h-1 bg-primary rounded-full mx-auto"></div>
         </div>
-        <!-- Filter -->
         <div class="flex justify-center flex-wrap gap-2 mb-8 reveal">
             <button class="filter-btn border-2 border-primary/20 text-gray-500 px-5 py-2 rounded-full text-xs font-semibold transition-all hover:bg-primary hover:text-white hover:border-primary active" data-filter="all">All</button>
             <button class="filter-btn border-2 border-primary/20 text-gray-500 px-5 py-2 rounded-full text-xs font-semibold transition-all hover:bg-primary hover:text-white hover:border-primary" data-filter="web">Web App</button>
             <button class="filter-btn border-2 border-primary/20 text-gray-500 px-5 py-2 rounded-full text-xs font-semibold transition-all hover:bg-primary hover:text-white hover:border-primary" data-filter="design">UI/UX</button>
             <button class="filter-btn border-2 border-primary/20 text-gray-500 px-5 py-2 rounded-full text-xs font-semibold transition-all hover:bg-primary hover:text-white hover:border-primary" data-filter="fullstack">Full Stack</button>
         </div>
-        <!-- Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 reveal" id="work-grid">
 
             <div class="work-card bg-gray-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all hover:-translate-y-2" data-cat="fullstack">
@@ -852,17 +756,12 @@
     </div>
 </section>
 
-
-<!-- CTA / CONTACT -->
+<!-- CONTACT -->
 <section id="contact" class="py-24 bg-dark relative overflow-hidden">
-
-    <!-- Background glows -->
     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute bottom-0 right-0 w-[300px] h-[300px] bg-accent/8 rounded-full blur-3xl pointer-events-none"></div>
 
     <div class="max-w-4xl mx-auto px-6 relative">
-
-        <!-- Header -->
         <div class="text-center mb-14 reveal">
             <span class="inline-flex items-center gap-2 bg-primary/15 border border-primary/20 text-indigo-300 text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-widest mb-5">
                 <i class='bx bxs-circle text-green-400 text-[8px]'></i> Open to Opportunities
@@ -875,13 +774,9 @@
             </p>
         </div>
 
-        <!-- CTA Cards -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12 reveal">
-            <!-- Card: Resume -->
             <a href="assets/cv/CV_Joshua.pdf" target="_blank"
-               class="group relative bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center gap-3 text-center
-                      hover:bg-primary/15 hover:border-primary/40 hover:-translate-y-1
-                      transition-all duration-300 overflow-hidden">
+               class="group relative bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center gap-3 text-center hover:bg-primary/15 hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 overflow-hidden">
                 <div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center text-primary text-xl group-hover:bg-primary group-hover:text-white transition-all duration-300">
                     <i class='bx bx-download'></i>
                 </div>
@@ -892,11 +787,8 @@
                 <div class="absolute bottom-0 left-0 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
             </a>
 
-            <!-- Card: Portfolio -->
             <a href="assets/portofolio/PORTOFOLIO JOSSS.pdf" target="_blank"
-               class="group relative bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center gap-3 text-center
-                      hover:bg-accent/15 hover:border-accent/40 hover:-translate-y-1
-                      transition-all duration-300 overflow-hidden">
+               class="group relative bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center gap-3 text-center hover:bg-accent/15 hover:border-accent/40 hover:-translate-y-1 transition-all duration-300 overflow-hidden">
                 <div class="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center text-accent text-xl group-hover:bg-accent group-hover:text-white transition-all duration-300">
                     <i class='bx bx-file'></i>
                 </div>
@@ -907,11 +799,8 @@
                 <div class="absolute bottom-0 left-0 w-full h-[2px] bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
             </a>
 
-            <!-- Card: LinkedIn -->
             <a href="https://www.linkedin.com/in/joshua-hotama-859823225/" target="_blank"
-               class="group relative bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center gap-3 text-center
-                      hover:bg-blue-500/15 hover:border-blue-400/40 hover:-translate-y-1
-                      transition-all duration-300 overflow-hidden">
+               class="group relative bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center gap-3 text-center hover:bg-blue-500/15 hover:border-blue-400/40 hover:-translate-y-1 transition-all duration-300 overflow-hidden">
                 <div class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center text-blue-400 text-xl group-hover:bg-blue-500 group-hover:text-white transition-all duration-300">
                     <i class='bx bxl-linkedin'></i>
                 </div>
@@ -923,56 +812,44 @@
             </a>
         </div>
 
-        <!-- Divider -->
         <div class="flex items-center gap-4 mb-8 reveal">
             <div class="flex-1 h-px bg-white/10"></div>
             <p class="text-white/25 text-xs whitespace-nowrap">Also find me on</p>
             <div class="flex-1 h-px bg-white/10"></div>
         </div>
 
-        <!-- Social Icons -->
         <div class="flex justify-center gap-3 reveal">
             <a href="https://www.facebook.com/joshua.hotama/" target="_blank"
-               class="group w-11 h-11 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-white/50
-                      hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:scale-110 hover:-translate-y-1 transition-all duration-300">
+               class="group w-11 h-11 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-white/50 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:scale-110 hover:-translate-y-1 transition-all duration-300">
                 <i class="bi bi-facebook text-sm"></i>
             </a>
             <a href="https://www.instagram.com/joshuahotama/" target="_blank"
-               class="group w-11 h-11 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-white/50
-                      hover:bg-gradient-to-br hover:from-purple-500 hover:to-pink-500 hover:text-white hover:border-pink-400 hover:scale-110 hover:-translate-y-1 transition-all duration-300">
+               class="group w-11 h-11 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-white/50 hover:bg-gradient-to-br hover:from-purple-500 hover:to-pink-500 hover:text-white hover:border-pink-400 hover:scale-110 hover:-translate-y-1 transition-all duration-300">
                 <i class="bi bi-instagram text-sm"></i>
             </a>
             <a href="https://github.com/Joshot" target="_blank"
-               class="group w-11 h-11 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-white/50
-                      hover:bg-gray-700 hover:text-white hover:border-gray-500 hover:scale-110 hover:-translate-y-1 transition-all duration-300">
+               class="group w-11 h-11 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-white/50 hover:bg-gray-700 hover:text-white hover:border-gray-500 hover:scale-110 hover:-translate-y-1 transition-all duration-300">
                 <i class="bi bi-github text-sm"></i>
             </a>
             <a href="https://www.linkedin.com/in/joshua-hotama-859823225/" target="_blank"
-               class="group w-11 h-11 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-white/50
-                      hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:scale-110 hover:-translate-y-1 transition-all duration-300">
+               class="group w-11 h-11 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-white/50 hover:bg-blue-600 hover:text-white hover:border-blue-600 hover:scale-110 hover:-translate-y-1 transition-all duration-300">
                 <i class="bi bi-linkedin text-sm"></i>
             </a>
         </div>
-
     </div>
 </section>
 
 <!-- FOOTER -->
 <footer class="bg-[#080f1a] pb-32 pt-10 relative overflow-hidden">
     <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
-
     <div class="max-w-6xl mx-auto px-6">
         <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-
-            <!-- Brand -->
             <div class="text-center md:text-left">
                 <a href="#home" class="text-lg font-black tracking-tight">
                     <span class="text-white">Joshua</span> <span class="text-primary">Hotama</span>
                 </a>
                 <p class="text-white/25 text-xs mt-1">Full Stack Developer · Tangerang, Indonesia</p>
             </div>
-
-            <!-- Nav links -->
             <div class="flex flex-wrap justify-center gap-x-6 gap-y-1">
                 <a href="#home" class="text-white/30 text-xs hover:text-primary transition-colors">Home</a>
                 <a href="#about" class="text-white/30 text-xs hover:text-primary transition-colors">About</a>
@@ -980,8 +857,6 @@
                 <a href="#work" class="text-white/30 text-xs hover:text-primary transition-colors">Projects</a>
                 <a href="#contact" class="text-white/30 text-xs hover:text-primary transition-colors">Contact</a>
             </div>
-
-            <!-- Social -->
             <div class="flex gap-3">
                 <a href="https://www.facebook.com/joshua.hotama/" target="_blank" class="text-white/25 hover:text-primary transition-colors text-sm"><i class="bi bi-facebook"></i></a>
                 <a href="https://www.linkedin.com/in/joshua-hotama-859823225/" target="_blank" class="text-white/25 hover:text-primary transition-colors text-sm"><i class="bi bi-linkedin"></i></a>
@@ -989,11 +864,7 @@
                 <a href="https://github.com/Joshot" target="_blank" class="text-white/25 hover:text-primary transition-colors text-sm"><i class="bi bi-github"></i></a>
             </div>
         </div>
-
-        <!-- Divider -->
         <div class="h-px bg-white/5 my-6"></div>
-
-        <!-- Copyright -->
         <div class="flex flex-col sm:flex-row items-center justify-between gap-2 text-center">
             <p class="text-white/20 text-[11px]">© 2026 <span class="text-white/40 font-semibold">Joshua Hotama</span>. All rights reserved.</p>
             <p class="text-white/15 text-[11px]">Designed & Built by Joshua Hotama</p>
@@ -1002,41 +873,29 @@
 </footer>
 
 <script>
-    // ============================================
-    // ✅ NAVBAR SCROLL — IntersectionObserver
-    // ============================================
+    // NAVBAR SCROLL
     const header = document.getElementById('header');
     const homeSection = document.getElementById('home');
-
-    const navObserver = new IntersectionObserver(
-        ([entry]) => {
-            if (entry.isIntersecting) {
-                header.classList.remove('navbar-scrolled');
-                header.classList.add('navbar-transparent');
-            } else {
-                header.classList.remove('navbar-transparent');
-                header.classList.add('navbar-scrolled');
-            }
-        },
-        { threshold: 0.1 }
-    );
+    const navObserver = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+            header.classList.remove('navbar-scrolled');
+            header.classList.add('navbar-transparent');
+        } else {
+            header.classList.remove('navbar-transparent');
+            header.classList.add('navbar-scrolled');
+        }
+    }, { threshold: 0.1 });
     navObserver.observe(homeSection);
 
-    // ============================================
     // LOADER
-    // ============================================
     window.addEventListener('load', () => {
         setTimeout(() => document.getElementById('loader').classList.add('hide'), 1800);
     });
 
-    // ============================================
-    // LUCIDE ICONS
-    // ============================================
+    // LUCIDE
     lucide.createIcons();
 
-    // ============================================
     // BACK TO TOP
-    // ============================================
     const backTop = document.getElementById('backTop');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 400) {
@@ -1048,72 +907,50 @@
         }
     });
 
-    // ============================================
     // REVEAL ON SCROLL
-    // ============================================
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(e => {
-            if (e.isIntersecting) {
-                e.target.classList.add('vis');
-                revealObserver.unobserve(e.target);
-            }
+            if (e.isIntersecting) { e.target.classList.add('vis'); revealObserver.unobserve(e.target); }
         });
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // ============================================
-    // BOTTOM NAV — Active section highlight (Mobile Fixed)
-    // ============================================
+    // BOTTOM NAV ACTIVE
     const sections = document.querySelectorAll('section[id]');
     const navItems = document.querySelectorAll('.nav-item[data-section]');
-
     function setActiveNav(id) {
         navItems.forEach(item => item.classList.remove('active'));
         const active = document.querySelector(`.nav-item[data-section="${id}"]`);
         if (active) active.classList.add('active');
     }
-
-    // Pakai scroll event — lebih reliable di semua device termasuk Android
     function onScroll() {
         const scrollY = window.scrollY;
         const headerH = document.getElementById('header')?.offsetHeight || 60;
-
         let currentId = '';
         sections.forEach(section => {
             const top = section.offsetTop - headerH - 40;
-            if (scrollY >= top) {
-                currentId = section.id;
-            }
+            if (scrollY >= top) currentId = section.id;
         });
-
         if (currentId) setActiveNav(currentId);
     }
-
     window.addEventListener('scroll', onScroll, { passive: true });
-
-    // Jalankan sekali saat load
     onScroll();
 
-        // ============================================
-        // SKILL TABS
-        // ============================================
-        document.querySelectorAll('.skill-tab').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.skill-tab').forEach(b => b.classList.remove('active'));
-                document.querySelectorAll('.skill-panel').forEach(p => p.classList.add('hidden'));
-                btn.classList.add('active');
-                document.getElementById('tab-' + btn.dataset.tab).classList.remove('hidden');
-            });
+    // SKILL TABS
+    document.querySelectorAll('.skill-tab').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.skill-tab').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.skill-panel').forEach(p => p.classList.add('hidden'));
+            btn.classList.add('active');
+            document.getElementById('tab-' + btn.dataset.tab).classList.remove('hidden');
         });
+    });
 
-    // ============================================
-    // PROJECT FILTER + SCROLL TO SECTION
-    // ============================================
+    // PROJECT FILTER
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-
             const filter = btn.dataset.filter;
             document.querySelectorAll('.work-card').forEach(card => {
                 if (filter === 'all' || card.dataset.cat === filter) {
@@ -1133,7 +970,6 @@
                     setTimeout(() => { card.style.display = 'none'; }, 200);
                 }
             });
-
             const workSection = document.getElementById('work');
             const headerHeight = document.getElementById('header')?.offsetHeight || 60;
             const top = workSection.getBoundingClientRect().top + window.scrollY - headerHeight - 16;
@@ -1141,51 +977,31 @@
         });
     });
 
-    // ============================================
-    // WORK CARD — Mobile Tap to Show Overlay
-    // ============================================
+    // MOBILE TAP OVERLAY
     (function () {
-        function isTouchDevice() {
-            return window.matchMedia('(hover: none)').matches;
-        }
-
+        function isTouchDevice() { return window.matchMedia('(hover: none)').matches; }
         function bindCardTap() {
             document.querySelectorAll('.work-card').forEach(card => {
-                // Hindari double-bind
                 if (card.dataset.tapBound) return;
                 card.dataset.tapBound = 'true';
-
                 card.addEventListener('click', function (e) {
-                    // Hanya aktif di touch device
                     if (!isTouchDevice()) return;
-
                     const overlay = card.querySelector('.work-overlay');
                     if (!overlay) return;
-
                     const isOpen = card.classList.contains('tapped');
-
-                    // Tutup semua card lain
                     document.querySelectorAll('.work-card.tapped').forEach(c => {
                         c.classList.remove('tapped');
                         c.querySelector('.work-overlay')?.classList.remove('overlay-visible');
                     });
-
-                    if (!isOpen) {
-                        // Kalau tap di luar link, buka overlay
-                        if (!e.target.closest('a')) {
-                            e.preventDefault();
-                            card.classList.add('tapped');
-                            overlay.classList.add('overlay-visible');
-                        }
+                    if (!isOpen && !e.target.closest('a')) {
+                        e.preventDefault();
+                        card.classList.add('tapped');
+                        overlay.classList.add('overlay-visible');
                     }
                 });
             });
         }
-
-        // Bind awal
         bindCardTap();
-
-        // Tutup overlay kalau tap di luar card
         document.addEventListener('click', function (e) {
             if (!e.target.closest('.work-card')) {
                 document.querySelectorAll('.work-card.tapped').forEach(c => {
@@ -1196,24 +1012,7 @@
         });
     })();
 
-    // ============================================
-    // PROGRESS BARS
-    // ============================================
-    const progObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.querySelectorAll('.prog-fill').forEach(bar => {
-                    bar.style.width = bar.dataset.w + '%';
-                });
-                progObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.3 });
-    document.querySelectorAll('#tab-prog').forEach(el => progObserver.observe(el));
-
-    // ============================================
     // COUNTER ANIMATION
-    // ============================================
     const counterObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -1233,9 +1032,7 @@
     }, { threshold: 0.5 });
     document.querySelectorAll('#home').forEach(el => counterObserver.observe(el));
 
-    // ============================================
     // TYPEWRITER
-    // ============================================
     const words = ['Full Stack Developer', 'UI/UX Enthusiast', 'Problem Solver', 'Fresh Graduate'];
     let wi = 0, ci = 0, deleting = false;
     const tw = document.getElementById('typewriter');
@@ -1251,23 +1048,6 @@
         setTimeout(typeLoop, deleting ? 60 : 100);
     }
     typeLoop();
-
-    // ============================================
-    // CONTACT FORM
-    // ============================================
-    document.getElementById('contact-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const btn = this.querySelector('button[type="submit"]');
-        btn.innerHTML = '<i class="bx bx-check"></i> Message Sent!';
-        btn.classList.add('bg-green-500');
-        btn.classList.remove('bg-primary');
-        setTimeout(() => {
-            btn.innerHTML = '<i class="bx bx-send"></i> Send Message';
-            btn.classList.remove('bg-green-500');
-            btn.classList.add('bg-primary');
-            this.reset();
-        }, 3000);
-    });
 </script>
 </body>
 </html>
