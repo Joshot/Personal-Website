@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #4361ee;
+  --color-accent: #f72585;
+  --color-dark: #0d1b2a;
+}
+
+:root {
+  --background: #fafafa;
+  --foreground: #0d1b2a;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-thumb { background: var(--color-primary); border-radius: 5px; }
