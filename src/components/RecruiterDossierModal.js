@@ -37,7 +37,7 @@ export default function RecruiterDossierModal({ isOpen, onClose }) {
             <div className="flex items-start justify-between relative z-10 gap-3">
               <div>
                 <div className="inline-flex items-center gap-1.5 bg-[#4361ee]/20 border border-[#4361ee]/40 text-[#4361ee] text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">
-                  <Terminal size={12} className="text-[#4361ee]" /> Technical Overview &amp; Profile
+                  <Terminal size={12} className="text-[#4361ee]" /> Verified Candidate Dossier
                 </div>
                 <h2 className="text-xl sm:text-3xl font-black tracking-tight text-white">
                   Joshua Hotama

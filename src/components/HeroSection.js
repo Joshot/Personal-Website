@@ -83,7 +83,7 @@ export default function HeroSection({ onOpenCommandPalette }) {
                 className="inline-flex items-center gap-1.5 bg-white/10 hover:bg-white/20 border border-white/20 text-white/90 text-xs font-semibold px-3 py-1.5 rounded-full transition-all cursor-pointer"
               >
                 <FileText size={13} className="text-[#4361ee]" />
-                <span>Technical Profile &amp; Summary</span>
+                <span>Verified Candidate Dossier</span>
               </button>
             </motion.div>
 

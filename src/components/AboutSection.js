@@ -2,10 +2,12 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
+import RecruiterDossierModal from "./RecruiterDossierModal";
 import { Download, FileText, CheckCircle2, GraduationCap, Code, Layers, Briefcase, ExternalLink, MapPin, Code2, Calendar } from "lucide-react";
 
 export default function AboutSection() {
   const [activeTab, setActiveTab] = useState("overview");
+  const [isDossierOpen, setIsDossierOpen] = useState(false);
 
   return (
     <section id="about" className="py-20 sm:py-24 bg-white relative overflow-hidden">
@@ -251,11 +253,22 @@ export default function AboutSection() {
               >
                 <FileText size={14} /> View Portfolio Deck (PDF)
               </a>
+              <button
+                onClick={() => setIsDossierOpen(true)}
+                className="bg-slate-900 hover:bg-slate-800 text-white px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 transition-all shadow-sm cursor-pointer"
+              >
+                <FileText size={14} className="text-[#4361ee]" /> Verified Candidate Dossier
+              </button>
             </div>
           </motion.div>
 
         </div>
       </div>
+
+      <RecruiterDossierModal
+        isOpen={isDossierOpen}
+        onClose={() => setIsDossierOpen(false)}
+      />
     </section>
   );
 }
