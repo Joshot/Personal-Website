@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { projects } from "@/data/projects";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function StageProjects() {
   const showcaseProjects = projects.slice(0, 5); // Limit to top 5 for the showcase
@@ -128,9 +129,9 @@ export default function StageProjects() {
         </div>
 
         <div className="mt-28 text-center">
-          <a href="/#work" className="inline-flex items-center gap-2 text-[#4361ee] font-bold text-sm hover:underline" data-cursor="Go Home">
-            View All Projects <ChevronRight size={16} />
-          </a>
+          <Link href="/#work" className="inline-flex items-center gap-2 text-[#4361ee] font-bold text-sm hover:underline" data-cursor="Go Home">
+            View All 20+ Projects <ChevronRight size={16} />
+          </Link>
         </div>
       </div>
     </section>

@@ -37,19 +37,16 @@ export default function StageBuild() {
           </motion.div>
 
           <div className="relative w-full h-[350px] perspective-1000 z-10">
-            {/* Border Beam Effect Wrap */}
+            {/* Mockup Container */}
             <motion.div 
               initial={{ opacity: 0, y: 50, rotateX: 10 }}
               whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
-              className="relative w-full h-full rounded-2xl p-[1px] overflow-hidden shadow-2xl"
+              className="relative w-full h-full rounded-2xl border border-slate-200 shadow-xl overflow-hidden bg-white flex flex-col"
             >
-              <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0_340deg,#4361ee_360deg)] animate-[spin_4s_linear_infinite]" />
-              
-              <div className="absolute inset-[1px] bg-white rounded-2xl overflow-hidden flex flex-col">
-                {/* Browser chrome */}
-                <div className="h-10 border-b border-gray-100 bg-gray-50 flex items-center px-4 gap-2">
+              {/* Browser chrome */}
+              <div className="h-10 border-b border-gray-100 bg-gray-50 flex items-center px-4 gap-2">
                   <div className="flex gap-1.5">
                     <div className="w-3 h-3 rounded-full bg-red-400" />
                     <div className="w-3 h-3 rounded-full bg-yellow-400" />
@@ -95,7 +92,6 @@ export default function StageBuild() {
                     ))}
                   </div>
                 </div>
-              </div>
             </motion.div>
           </div>
 

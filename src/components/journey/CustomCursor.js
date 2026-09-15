@@ -20,9 +20,8 @@ export default function CustomCursor() {
     // Disable if reduced motion is preferred
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    setIsVisible(true);
-
     const moveCursor = (e) => {
+      setIsVisible(true);
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
     };

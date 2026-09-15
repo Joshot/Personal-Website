@@ -24,9 +24,9 @@ export default function StageTogether() {
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-[#4361ee]/30 rounded-full blur-[100px] pointer-events-none" />
           
           <div className="relative z-10 flex flex-col items-center">
-            <motion.span variants={textVariants} className="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/20 text-green-400 text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider mb-8">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-              Available for Hire
+            <motion.span variants={textVariants} className="inline-flex items-center gap-2 bg-[#4361ee]/20 border border-[#4361ee]/40 text-[#4361ee] text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider mb-8">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#4361ee]" />
+              Open to Opportunities
             </motion.span>
             
             <motion.h2 variants={textVariants} className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight">
@@ -48,6 +48,12 @@ export default function StageTogether() {
                 <span className="relative flex items-center gap-2">
                   <Download size={18} /> View Resume
                 </span>
+              </a>
+              <a 
+                href="mailto:joshuahh554@gmail.com" 
+                className="bg-[#4361ee] text-white px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 hover:bg-[#3451db] hover:-translate-y-1 transition-all shadow-lg shadow-[#4361ee]/30"
+              >
+                Direct Email: joshuahh554@gmail.com
               </a>
               <a 
                 href="https://www.linkedin.com/in/joshuahotama/" 

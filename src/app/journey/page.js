@@ -1,6 +1,7 @@
 import CustomCursor from "@/components/journey/CustomCursor";
 import JourneyProgress from "@/components/journey/JourneyProgress";
 import JourneyHero from "@/components/journey/JourneyHero";
+import DeveloperQuestGame from "@/components/journey/DeveloperQuestGame";
 import StageSpark from "@/components/journey/StageSpark";
 import StageShape from "@/components/journey/StageShape";
 import StageBuild from "@/components/journey/StageBuild";
@@ -10,8 +11,8 @@ import StageProjects from "@/components/journey/StageProjects";
 import StageTogether from "@/components/journey/StageTogether";
 
 export const metadata = {
-  title: "Build Journey | Joshua Hotama",
-  description: "Explore how I turn concepts into functional digital experiences.",
+  title: "Career Quest & Build Journey | Joshua Hotama",
+  description: "Play through Joshua Hotama's interactive developer quest and explore how ideas transform into production software.",
 };
 
 export default function JourneyPage() {
@@ -21,6 +22,7 @@ export default function JourneyPage() {
       <JourneyProgress />
       
       <JourneyHero />
+      <DeveloperQuestGame />
       <StageSpark />
       <StageShape />
       <StageBuild />

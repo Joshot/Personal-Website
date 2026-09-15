@@ -58,8 +58,8 @@ export default function SkillConstellation() {
         </motion.p>
         
         <div className="relative w-full max-w-[800px] mx-auto h-[500px] bg-gray-50/30 rounded-3xl overflow-hidden border border-gray-100 shadow-inner">
-          {/* Spotlight Effect */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(67,97,238,0.08)_0%,transparent_70%)] pointer-events-none" />
+          {/* Subtle Ambience */}
+          <div className="absolute inset-0 bg-[#4361ee]/5 pointer-events-none" />
 
           {/* Lines */}
           <svg className="absolute inset-0 w-full h-full pointer-events-none">
@@ -77,7 +77,7 @@ export default function SkillConstellation() {
                   initial={{ pathLength: 0 }}
                   whileInView={{ pathLength: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 1.5, delay: 0.5 + Math.random() }}
+                  transition={{ duration: 1.5, delay: 0.5 + (i % 5) * 0.15 }}
                 />
               );
             })}

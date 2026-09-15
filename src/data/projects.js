@@ -123,18 +123,6 @@ export const projects = [
     ]
   },
   {
-    id: 11,
-    title: "City Simulation",
-    category: "game",
-    categoryLabel: "Simulation",
-    image: "https://s0.wp.com/mshots/v1/https%3A%2F%2Fsimulasi-kota.netlify.app%2F?w=600",
-    description: "Interactive city simulation game where you manage resources and build a thriving metropolis.",
-    link: "https://simulasi-kota.netlify.app/",
-    tags: [
-      { name: "Next.js", color: "text-dark", bg: "bg-gray-100", border: "border-gray-200" }
-    ]
-  },
-  {
     id: 12,
     title: "Minimarket Tycoon",
     category: "game",

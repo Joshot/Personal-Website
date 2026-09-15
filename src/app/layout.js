@@ -4,8 +4,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Joshua Hotama - Portfolio",
-  description: "Portfolio of Joshua Hotama, Full Stack Developer.",
+  title: "Joshua Hotama - Personal Portfolio",
+  description: "Portfolio website of Joshua Hotama, Full Stack Developer, showcasing skills, interactive project showcases, and career journey.",
   icons: {
     icon: "/assets/img/logoHtml.png",
   },

@@ -17,7 +17,7 @@ export default function StageLogic() {
 
   return (
     <section id="stage-04" className="min-h-[120vh] py-40 flex items-center relative z-10 bg-[#0d1b2a]">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#4361ee]/10 via-transparent to-transparent opacity-50" />
+      <div className="absolute inset-0 bg-[#4361ee]/5 pointer-events-none" />
       
       <div className="max-w-4xl mx-auto px-6 w-full lg:pl-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
