@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "standalone",
+  // On Vercel, omit 'standalone' because Vercel uses its own deployment tracing and expects standard .next output.
+  // In Docker / Cloud Run / self-hosted environments without VERCEL env, use 'standalone'.
+  output: process.env.VERCEL ? undefined : "standalone",
   allowedDevOrigins: [
     "**.run.app",
     "*.run.app",
